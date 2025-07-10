@@ -18,10 +18,10 @@ fanfary.play();
 <template>
     <div class="plansza-win-level-one" role="img" alt="plansza"
         aria-label="BRAWO, udało Ci się ukończyć poziom 1. Chcesz grać dalej?"></div>
-    <button class="gram-jeszcze-1-level-one anim1" @click="$emit('gram-dalej')" role="img" alt="przycisk"
-        aria-label="gram dalej">gram dalej</button>
-    <button class="zakoncz-gre anim1" @click="$emit('koniec-gry')" role="img" alt="przycisk"
-        aria-label="zakończ grę">zakończ grę</button>
+    <button class="gram-jeszcze-1-level-one anim1" @click="$emit('gram-dalej')" role="button"
+        >gram dalej</button>
+    <button class="zakoncz-gre anim1" @click="$emit('koniec-gry')" role="button"
+        >zakończ grę</button>
 
 </template>
 

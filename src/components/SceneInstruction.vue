@@ -24,9 +24,10 @@ onMounted(() => {
       Po drodze czekają Cię zasadzki kryjące się na polach oznaczonych<br>
       wykrzykniknikiem. Powodzenia!
     </p>
+    </div>
     <button class="dalej anim1" @click="$emit('koniec-instrukcja')" role="button" alt="przycisk"
       aria-label="Przycisk dalej">dalej</button>
-  </div>
+  
 </template>
 <style>
 .tlo1 {

@@ -179,19 +179,17 @@ function sprawdzOdpowiedz() {
         quizz_assets_data.pokaz_zadanie_2(props.miejsceNaPlanszy).odpowiedz_text[nr_zestawu][2] }}</p> -->
     <p class="odpowiedz odpowiedz3 anim1"
         v-html="quizz_assets_data.pokaz_zadanie_2(props.miejsceNaPlanszy).odpowiedz_text[nr_zestawu][2]"></p>
-    <button class="button-dalej" v-if="if_button_dalej" @click="sprawdzOdpowiedz()" role="button" alt="przycisk"
-        aria-label="przycisk sprawdź odpowiedź">sprawdź odpowiedź</button>
+    <button class="button-dalej" v-if="if_button_dalej" @click="sprawdzOdpowiedz()" role="button">sprawdź odpowiedź</button>
     <div class="plansza-dobrze" v-if="if_odpowiedz_dobrze" role="img" alt="plansza dobra odpowiedź"
         aria-label="plansza odpowiedź prawidłowa"></div>
     <button class="button-dalej-dobrze anim1" v-if="if_button_dalej_dobrze" @click="if_odpowiedz_dobrze = false,
         if_button_dalej_dobrze = false,
-        $emit('koniec-quizz')" role="img" alt="przycisk" aria-label="przycisk dalej - powrót do gry">dalej</button>
+        $emit('koniec-quizz')" role="button">dalej</button>
     <div class="plansza-zle" v-if="if_odpowiedz_zle" role="img" alt="plansza zła odpowiedź"
         aria-label="plansza odpowiedź nieprawidłowa"></div>
     <button class="button-dalej-dobrze anim1" v-if="if_button_dalej_zle" @click="if_odpowiedz_zle = false,
         if_button_dalej_zle = false,
-        $emit('koniec-quizz')" role="img" alt="przycisk dalej"
-        aria-label="przycisk dalej - powrót do gry">dalej</button>
+        $emit('koniec-quizz')" role="button" >dalej</button>
 
 </template>
 

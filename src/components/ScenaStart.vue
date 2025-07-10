@@ -22,9 +22,9 @@ function openFullscreen() {
 
 <template>
   <div ref="stageParent" class="tlo" role="img" alt="plansza" aria-label="W internetowym labiryncie">
-    <button class="start" @click="$emit('koniec-planszy')" role="button" alt="przycisk"
-      aria-label="przycisk start">START</button>
   </div>
+  <button class="start" @click="$emit('koniec-planszy')" role="button" alt="przycisk">START</button>
+
 </template>
 
 <style>

@@ -16,8 +16,8 @@ przegrana_sound.play();
 
 <template>
     <div class="plansza-lose" role="img" alt="tło" aria-label="Plansza przegranej"></div>
-    <button class="gram-jeszcze-1 anim1" @click="$emit('jeszcze-raz')" role="img" alt="przycisk" aria-label="gram jeszcze raz">zagraj jeszcze raz</button>
-    <button class="zakoncz-gre anim1" @click="$emit('koniec-gry')" role="img" alt="przycisk" aria-label="zakończ grę">zakończ grę</button>
+    <button class="gram-jeszcze-1 anim1" @click="$emit('jeszcze-raz')" role="button" >zagraj jeszcze raz</button>
+    <button class="zakoncz-gre anim1" @click="$emit('koniec-gry')" role="button" >zakończ grę</button>
 </template>
 
 <style scoped>

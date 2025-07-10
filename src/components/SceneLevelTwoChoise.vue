@@ -11,12 +11,12 @@ onMounted(() => {
 })
 </script>
 <template>
-    <div class="tlo-level2" role="img" alt="tło" aria-label="plansza wyboru poziomu">
-        <button class="level-one-button" @click="$emit('wybor-levelu1')" role="img" alt="przycisk"
+    <div class="tlo-level2" role="img" alt="tło" aria-label="plansza wyboru poziomu"></div>
+        <button class="level-one-button" @click="$emit('wybor-levelu1')" role="button" 
             aria-label="wybierz poziom jeden">poziom 1</button>
-        <button class="level-two-button" @click="$emit('wybor-levelu2')" role="img" alt="przycisk"
+        <button class="level-two-button" @click="$emit('wybor-levelu2')" role="button" 
             aria-label="wybierz poziom dwa">poziom 2</button>
-    </div>
+    
 </template>
 <style scoped>
 .tlo-level2 {

@@ -13,11 +13,11 @@ onMounted(() => {
 
 <template>
     <div class="tlo-level1" role="img" alt="tło" aria-label="Wybór poziomu">
-        <button class="level-one-button" @click="$emit('wybor-levelu1')" role="img" alt="przycisk"
-            aria-label="Przycisk poziom jeden" autofocus>poziom 1</button>
-        <button class="level-two-button" role="img" alt="przycisk" aria-label="Przycisk poziom dwa nieaktywny"
-            disabled>poziom 2</button>
     </div>
+    <button class="level-one-button" @click="$emit('wybor-levelu1')" role="button" alt="przycisk"
+         autofocus>poziom 1</button>
+    <button class="level-two-button" role="button" alt="przycisk" disabled>poziom 2</button>
+
 </template>
 
 <style scoped>
@@ -45,7 +45,7 @@ onMounted(() => {
     left: 220px;
     width: 595px;
     height: 200px;
-     border: 4px solid rgb(0, 187, 255);
+    border: 4px solid rgb(0, 187, 255);
 }
 
 .level-one-button:hover {
@@ -71,6 +71,6 @@ onMounted(() => {
     left: 1063px;
     width: 595px;
     height: 200px;
-     border: 4px solid rgb(0, 187, 255);
+    border: 4px solid rgb(0, 187, 255);
 }
 </style>

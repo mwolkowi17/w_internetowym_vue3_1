@@ -288,14 +288,13 @@ const odejmijSzanse = () => {
 
 </script>
 <template>
-    <div class="tlo2" role="img" alt="tło" aria-label="gra planszowa - poziom1">
+    <div class="tlo2" role="img" alt="tło" aria-label="gra planszowa - poziom1"></div>
         <div class="pionek1" :style="{ left: pionek_left + 'px', top: pionek_top + 'px' }" role="img" alt="ikona"
             aria-label="Pionek"></div>
         <div class="szansa1 szansa_ksztalt1" v-if="if_szansa1" role="img" alt="ikona" aria-label="Szansa 1"></div>
         <div class="szansa2 szansa_ksztalt1" v-if="if_szansa2" role="img" alt="ikona" aria-label="Szansa 2"></div>
         <div class="szansa3 szansa_ksztalt1" v-if="if_szansa3" role="img" alt="ikona" aria-label="Szansa 3"></div>
-        <button class="rzut1 anim1" v-if="if_rzuc_kostka" @click="kostka_click()" role="button" alt="przycisk"
-            aria-label="Rzuć kostką" autofocus>Rzut kostką</button>
+        <button class="rzut1 anim1" v-if="if_rzuc_kostka" @click="kostka_click()" role="button"  autofocus>Rzut kostką</button>
         <div class="kostka1" :class="{
             'kostka1image1': isSet1,
             'kostka1image2': isSet2,
@@ -307,7 +306,7 @@ const odejmijSzanse = () => {
         <SceneTrap v-if="if_widok_pulapki" @koniec-pulapka="if_widok_pulapki = false, koniecPulapki()" />
         <SceneQuizz1 v-if="if_widok_quizz1" @koniec-quizz="if_widok_quizz1 = false, koniecQuizu()"
             @odejmij-szanse="odejmijSzanse" msg="Hej" :miejsceNaPlanszy="krok_gracz1_na_planszy" />
-    </div>
+    
 </template>
 <style scoped>
 .tlo2 {
