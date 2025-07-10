@@ -13,9 +13,9 @@ defineOptions({
 })
 
 onMounted(() => {
- const elementToFocus = document.querySelector(".rzut1")
- if (elementToFocus) {
-      elementToFocus.focus();
+    const elementToFocus = document.querySelector(".rzut1")
+    if (elementToFocus) {
+        elementToFocus.focus();
     }
 
 })
@@ -234,13 +234,13 @@ function kostka_click() {
 
 }
 
-const koniecQuizu = ()=> {
-if_rzuc_kostka.value = true
+const koniecQuizu = () => {
+    if_rzuc_kostka.value = true
 
-const buttonRzutVis = new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve(document.querySelector(".rzut1"))
-      }, 300);
+    const buttonRzutVis = new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve(document.querySelector(".rzut1"))
+        }, 300);
     })
 
     buttonRzutVis.then((res) => { res.focus() })
@@ -257,9 +257,9 @@ const koniecPulapki = () => {
     if_rzuc_kostka.value = true;
 
     const buttonRzutVis = new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve(document.querySelector(".rzut1"))
-      }, 300);
+        setTimeout(() => {
+            resolve(document.querySelector(".rzut1"))
+        }, 300);
     })
 
     buttonRzutVis.then((res) => { res.focus() })
@@ -288,25 +288,26 @@ const odejmijSzanse = () => {
 
 </script>
 <template>
-    <div class="tlo2" role="img" alt="tło" aria-label="gra planszowa - poziom1"></div>
-    <div class="pionek1" :style="{ left: pionek_left + 'px', top: pionek_top + 'px' }" role="img" alt="ikona"
-        aria-label="Pionek"></div>
-    <div class="szansa1 szansa_ksztalt1" v-if="if_szansa1" role="img" alt="ikona" aria-label="Szansa 1"></div>
-    <div class="szansa2 szansa_ksztalt1" v-if="if_szansa2" role="img" alt="ikona" aria-label="Szansa 2"></div>
-    <div class="szansa3 szansa_ksztalt1" v-if="if_szansa3" role="img" alt="ikona" aria-label="Szansa 3"></div>
-    <button class="rzut1 anim1" v-if="if_rzuc_kostka" @click="kostka_click()" role="img" alt="przycisk"
-        aria-label="Rzuć kostką" autofocus ></button>
-    <div class="kostka1" :class="{
-        'kostka1image1': isSet1,
-        'kostka1image2': isSet2,
-        'kostka1image3': isSet3,
-        'kostka1image4': isSet4,
-        'kostka1image5': isSet5,
-        'kostka1image6': isSet6
-    }" v-if="if_widok_kostki" role="img" alt="ikona widoku kostki" :aria-label=wyrzuconaWartoscKostki></div>
-    <SceneTrap v-if="if_widok_pulapki" @koniec-pulapka="if_widok_pulapki = false, koniecPulapki()" />
-    <SceneQuizz1 v-if="if_widok_quizz1" @koniec-quizz="if_widok_quizz1 = false, koniecQuizu()"
-        @odejmij-szanse="odejmijSzanse" msg="Hej" :miejsceNaPlanszy="krok_gracz1_na_planszy" />
+    <div class="tlo2" role="img" alt="tło" aria-label="gra planszowa - poziom1">
+        <div class="pionek1" :style="{ left: pionek_left + 'px', top: pionek_top + 'px' }" role="img" alt="ikona"
+            aria-label="Pionek"></div>
+        <div class="szansa1 szansa_ksztalt1" v-if="if_szansa1" role="img" alt="ikona" aria-label="Szansa 1"></div>
+        <div class="szansa2 szansa_ksztalt1" v-if="if_szansa2" role="img" alt="ikona" aria-label="Szansa 2"></div>
+        <div class="szansa3 szansa_ksztalt1" v-if="if_szansa3" role="img" alt="ikona" aria-label="Szansa 3"></div>
+        <button class="rzut1 anim1" v-if="if_rzuc_kostka" @click="kostka_click()" role="button" alt="przycisk"
+            aria-label="Rzuć kostką" autofocus>Rzut kostką</button>
+        <div class="kostka1" :class="{
+            'kostka1image1': isSet1,
+            'kostka1image2': isSet2,
+            'kostka1image3': isSet3,
+            'kostka1image4': isSet4,
+            'kostka1image5': isSet5,
+            'kostka1image6': isSet6
+        }" v-if="if_widok_kostki" role="img" alt="ikona widoku kostki" :aria-label=wyrzuconaWartoscKostki></div>
+        <SceneTrap v-if="if_widok_pulapki" @koniec-pulapka="if_widok_pulapki = false, koniecPulapki()" />
+        <SceneQuizz1 v-if="if_widok_quizz1" @koniec-quizz="if_widok_quizz1 = false, koniecQuizu()"
+            @odejmij-szanse="odejmijSzanse" msg="Hej" :miejsceNaPlanszy="krok_gracz1_na_planszy" />
+    </div>
 </template>
 <style scoped>
 .tlo2 {
@@ -366,6 +367,11 @@ const odejmijSzanse = () => {
 }
 
 .rzut1 {
+    color: rgb(255, 255, 255);
+    font-size: 40px;
+    font-style: bold;
+    font-weight: 700;
+    font-family: "Proxima Nova", sans-serif;
     background-image: url("../assets/rzut_przycisk.png");
     background-size: 333px 86px;
     background-repeat: no-repeat;
@@ -414,16 +420,22 @@ const odejmijSzanse = () => {
 
 /* The animation code */
 @keyframes example {
-  /* from {background-color: red;}
+
+    /* from {background-color: red;}
   to {background-color: yellow;} */
-  from {opacity: 0;}
-  to {opacity: 100;}
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 100;
+    }
 }
 
 /*anim1* The element to apply the animation to */
 .anim1 {
-  
-  animation-name: example;
-  animation-duration: 1s;
+
+    animation-name: example;
+    animation-duration: 1s;
 }
 </style>

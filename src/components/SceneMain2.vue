@@ -288,7 +288,7 @@ const odejmijSzanse = () => {
     <div class="szansa3 szansa_ksztalt1" v-if="if_szansa3" role="img" alt="ikona szansy" aria-label="Szansa 3"></div>
     <div class="szansa4 szansa_ksztalt1" v-if="if_szansa4" role="img" alt="ikona szansy" aria-label="Szansa 4"></div>
     <button class="rzut2 anim1" v-if="if_rzuc_kostka" @click="kostka_click()" role="img" alt="przycisk"
-        aria-label="Rzuć kostką"></button>
+        aria-label="Rzuć kostką">Rzut kostką</button>
     <div class="kostka1" :class="{
         'kostka1image1': isSet1,
         'kostka1image2': isSet2,
@@ -361,6 +361,11 @@ const odejmijSzanse = () => {
 
 
 .rzut2 {
+    color: rgb(255, 255, 255);
+    font-size: 40px;
+    font-style: bold;
+    font-weight: 700;
+    font-family: "Proxima Nova", sans-serif;
     background-image: url("../assets/rzut_przycisk.png");
     background-size: 333px 86px;
     background-repeat: no-repeat;

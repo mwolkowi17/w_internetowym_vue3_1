@@ -145,18 +145,18 @@ function sprawdzOdpowiedz() {
     zaznaczenie2()" role="img" alt="pole zaznaczenia" aria-label="zaznacz odpowiedź 2"></button>
   <p class="odpowiedz odpowiedz2 anim1">{{
     quizz_assets_data.pokaz_zadanie_2(props.miejsceNaPlanszy).odpowiedz_text[nr_zestawu][1] }}</p>
-  <button class="button-dalej" v-if="if_button_dalej" @click="sprawdzOdpowiedz()" role="img" alt="przycisk sprawdź"
-    aria-label="przycisk sprawdź odpowiedź"></button>
+  <button class="button-dalej" v-if="if_button_dalej" @click="sprawdzOdpowiedz()" role="button" alt="przycisk sprawdź"
+    aria-label="przycisk sprawdź odpowiedź">sprawdź odpowiedź</button>
   <div class="plansza-dobrze" v-if="if_odpowiedz_dobrze" role="img" alt="plansza dobra odpowiedź"
     aria-label="plansza odpowiedź prawidłowa"></div>
   <button class="button-dalej-dobrze anim1" v-if="if_button_dalej_dobrze" @click="if_odpowiedz_dobrze = false,
     if_button_dalej_dobrze = false,
-    $emit('koniec-quizz')" role="img" alt="przycisk dalej" aria-label="przycisk dalej - powrót do gry"></button>
+    $emit('koniec-quizz')" role="img" alt="przycisk dalej" aria-label="przycisk dalej - powrót do gry">dalej</button>
   <div class="plansza-zle" v-if="if_odpowiedz_zle" role="img" alt="plansza zła odpowiedź"
     aria-label="plansza odpowiedź nieprawidłowa"></div>
   <button class="button-dalej-dobrze anim1" v-if="if_button_dalej_zle" @click="if_odpowiedz_zle = false,
     if_button_dalej_zle = false,
-    $emit('koniec-quizz')" role="img" alt="przycisk" aria-label="dalej - powrót do gry"></button>
+    $emit('koniec-quizz')" role="button" alt="przycisk" aria-label="dalej - powrót do gry">dalej</button>
 
 
 </template>
@@ -249,6 +249,7 @@ function sprawdzOdpowiedz() {
 .pole1 {
   left: 200px;
   top: 455px;
+  
 }
 
 .pole2 {
@@ -303,6 +304,11 @@ function sprawdzOdpowiedz() {
 
 .button-dalej {
   background-image: url("../assets/sprawdz_odpwowiedz_button1.png");
+    color: rgb(255, 255, 255);
+    font-size: 40px;
+    font-style: bold;
+    font-weight: 700;
+    font-family: "Proxima Nova", sans-serif;
   background-size: 394px 87px;
   background-repeat: no-repeat;
   top: 760px;
@@ -346,7 +352,12 @@ function sprawdzOdpowiedz() {
 }
 
 .button-dalej-dobrze {
-  background-image: url("../assets/przycisk_dalej_imie.png");
+  /* background-image: url("../assets/przycisk_dalej_imie.png"); */
+   color: rgb(29, 56, 80);
+  font-size: 80px;
+  font-style: bold;
+  font-weight: 700;
+  font-family: "Proxima Nova", sans-serif;
   background-size: 301px 117px;
   background-position: -2px -1px;
   background-repeat: no-repeat;

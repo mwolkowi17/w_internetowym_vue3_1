@@ -16,8 +16,8 @@ przegrana_sound.play();
 
 <template>
     <div class="plansza-lose" role="img" alt="tło" aria-label="Plansza - przegrana"></div>
-    <button class="gram-jeszcze-1 anim1" @click="$emit('jeszcze-raz')" role="img" alt="przycisk" aria-label="gram jeszcze raz"></button>
-    <button class="zakoncz-gre anim1" @click="$emit('koniec-gry')" role="img" alt="przycisk" aria-label="zakończ grę"></button>
+    <button class="gram-jeszcze-1 anim1" @click="$emit('jeszcze-raz')" role="img" alt="przycisk" aria-label="gram jeszcze raz">zagraj jeszcze raz</button>
+    <button class="zakoncz-gre anim1" @click="$emit('koniec-gry')" role="img" alt="przycisk" aria-label="zakończ grę">zakończ grę</button>
 </template>
 
 <style scoped>
@@ -32,7 +32,12 @@ przegrana_sound.play();
     z-index: 2;
 }
 .gram-jeszcze-1{
-    background-image: url("../assets/gram_jeszcze_raz_button.png");
+    /* background-image: url("../assets/gram_jeszcze_raz_button.png"); */
+    color: rgb(29, 56, 80);
+    font-size: 60px;
+    font-style: bold;
+    font-weight: 700;
+    font-family: "Proxima Nova", sans-serif;
      background-size: 583px 192px;
     background-position: -1px -2px;
     position: absolute;
@@ -41,6 +46,7 @@ przegrana_sound.play();
     width: 583px;
     height: 192px;
     z-index: 3;
+    border: 4px solid rgb(0, 187, 255);
 }
 
 .gram-jeszcze-1:hover {
@@ -51,7 +57,12 @@ przegrana_sound.play();
     outline: 8px solid #08e926;
 }
 .zakoncz-gre{
-    background-image: url("../assets/zakoncz_gre_button.png");
+    /* background-image: url("../assets/zakoncz_gre_button.png"); */
+     color: rgb(29, 56, 80);
+    font-size: 60px;
+    font-style: bold;
+    font-weight: 700;
+    font-family: "Proxima Nova", sans-serif;
    background-size: 583px 192px;
     background-position: -1px -2px;
     position: absolute;
@@ -60,6 +71,7 @@ przegrana_sound.play();
     width: 583px;
     height: 192px;
     z-index: 3;
+    border: 4px solid rgb(0, 187, 255);
 }
 .zakoncz-gre:hover {
     cursor: pointer;

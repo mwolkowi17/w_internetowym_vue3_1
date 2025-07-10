@@ -22,9 +22,9 @@ fanfary.play();
 <template>
     <div class="plansza-win" role="img" alt="tło" aria-label="Plansza - wygrana"></div>
     <button class="gram-jeszcze-1 anim1" @click="$emit('jeszcze-raz')" role="img" alt="przycisk"
-        aria-label="gram jeszcze raz"></button>
+        aria-label="gram jeszcze raz">zagraj jeszcze raz</button>
     <button class="zakoncz-gre anim1" @click="$emit('koniec-gry')" role="img" alt="przycisk"
-        aria-label="zakończ grę"></button>
+        aria-label="zakończ grę">zakończ grę</button>
 </template>
 
 <style scoped>
@@ -40,7 +40,12 @@ fanfary.play();
 }
 
 .gram-jeszcze-1 {
-    background-image: url("../assets/gram_jeszcze_raz_button.png");
+    /* background-image: url("../assets/gram_jeszcze_raz_button.png"); */
+     color: rgb(29, 56, 80);
+    font-size: 60px;
+    font-style: bold;
+    font-weight: 700;
+    font-family: "Proxima Nova", sans-serif;
     background-size: 583px 192px;
     background-position: -1px -2px;
     position: absolute;
@@ -49,6 +54,7 @@ fanfary.play();
     width: 583px;
     height: 192px;
     z-index: 3;
+    border: 4px solid rgb(0, 187, 255);
 }
 
 .gram-jeszcze-1:hover {
@@ -61,7 +67,12 @@ fanfary.play();
 }
 
 .zakoncz-gre {
-    background-image: url("../assets/zakoncz_gre_button.png");
+    /* background-image: url("../assets/zakoncz_gre_button.png"); */
+     color: rgb(29, 56, 80);
+    font-size: 60px;
+    font-style: bold;
+    font-weight: 700;
+    font-family: "Proxima Nova", sans-serif;
     background-size: 583px 192px;
     background-position: -1px -2px;
     position: absolute;
@@ -70,6 +81,7 @@ fanfary.play();
     width: 583px;
     height: 192px;
     z-index: 3;
+    border: 4px solid rgb(0, 187, 255);
 }
 
 .zakoncz-gre:hover {
