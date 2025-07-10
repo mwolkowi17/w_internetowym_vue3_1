@@ -1,0 +1,12 @@
+body {
+  background-color: gray;
+  margin: 0px;
+  padding: 0px;
+
+  /* height: 1080px;
+  width: 1920px; */
+}
+
+html {
+  overflow: hidden;
+}
