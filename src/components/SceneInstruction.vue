@@ -12,7 +12,7 @@ onMounted(() => {
 })
 </script>
 <template>
-  <div class="tlo1" role="img" alt="tło" :aria-label="instrukcjaTekst">
+  <div class="tlo1" aria-label="Zasady gry">
     <p class="instrukcja">
       Znajdujesz się w Wirtualnej Dżungli - aby ją przejść, musisz odpowiedzieć <br>
       prawidłowo na pytania dotyczące internetu. Gra składa się z dwóch<br>

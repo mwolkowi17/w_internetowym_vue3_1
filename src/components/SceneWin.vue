@@ -20,7 +20,10 @@ fanfary.play();
 </script>
 
 <template>
-    <div class="plansza-win" role="img" alt="tło" aria-label="Plansza - wygrana"></div>
+    <div class="plansza-win">
+       <h2 class="naglowek">GRATULACJE!</h2>
+       <h4 class="napis">Udało ci się ukończyć grę.</h4>
+    </div>
     <button class="gram-jeszcze-1 anim1" @click="$emit('jeszcze-raz')" role="img" alt="przycisk"
         aria-label="gram jeszcze raz">zagraj jeszcze raz</button>
     <button class="zakoncz-gre anim1" @click="$emit('koniec-gry')" role="img" alt="przycisk"
@@ -37,6 +40,36 @@ fanfary.play();
     left: 0px;
     position: absolute;
     z-index: 2;
+}
+
+.naglowek{
+color: rgb(255, 255, 255);
+  font-size: 100px;
+  font-style: bold;
+  font-weight: 600;
+  font-family: "Proxima Nova", sans-serif;
+  top: 140px;
+  left: 650px;
+  height: 88px;
+  width: 333px;
+  position: absolute;
+  z-index: 2;
+ 
+}
+
+.napis{
+color: rgb(255, 255, 255);
+  font-size: 70px;
+  font-style: bold;
+  font-weight: 400;
+  font-family: "Proxima Nova", sans-serif;
+  white-space: nowrap;
+  top: 290px;
+  left: 560px;
+  height: 88px;
+  width: 333px;
+  position: absolute;
+  z-index: 2;
 }
 
 .gram-jeszcze-1 {

@@ -126,7 +126,7 @@ function sprawdzOdpowiedz() {
 </script>
 <template>
   <div class="planszaQuizz1 " :class="eksp1[quizz_assets_data.pokaz_zadanie_2(props.miejsceNaPlanszy).pytanie]"
-    role="img" alt="tło" aria-label="plansza - quizz"></div>
+    role="img" alt="plansza" aria-label="quizz"></div>
 
   <p class="pytanie1">{{ quizz_assets_data.pokaz_zadanie_2(props.miejsceNaPlanszy).tresc }}</p>
   <!-- <p class="pytanie1 anim1" v-html="quizz_assets_data.pokaz_zadanie_2(props.miejsceNaPlanszy).tresc "></p> -->
@@ -142,18 +142,22 @@ function sprawdzOdpowiedz() {
   <button class="pole-zazn pole2 anim1" @click="is_krzyzyk2 = true,
     is_krzyzyk1 = false,
     if_button_dalej = true,
-    zaznaczenie2()" role="img" alt="pole zaznaczenia" ></button>
+    zaznaczenie2()" role="img" alt="pole zaznaczenia" aria-label="zaznacz odpowiedź 2"></button>
   <p class="odpowiedz odpowiedz2 anim1">{{
     quizz_assets_data.pokaz_zadanie_2(props.miejsceNaPlanszy).odpowiedz_text[nr_zestawu][1] }}</p>
-  <button class="button-dalej" v-if="if_button_dalej" @click="sprawdzOdpowiedz()" role="button" alt="przycisk sprawdź"
-    >sprawdź odpowiedź</button>
-  <div class="plansza-dobrze" v-if="if_odpowiedz_dobrze" role="img" alt="plansza dobra odpowiedź"
-    ></div>
+  <button class="button-dalej" v-if="if_button_dalej" @click="sprawdzOdpowiedz()" role="button"
+    alt="przycisk sprawdź">sprawdź odpowiedź</button>
+  <div class="plansza-dobrze" v-if="if_odpowiedz_dobrze">
+    <h2 class="naglowek-after-quizz naglowek-dobrze">BRAWO!</h2>
+    <h4 class="napis-odpowiedz napis-dobrze">Prawidłowa odpowiedź.</h4>
+  </div>
   <button class="button-dalej-dobrze anim1" v-if="if_button_dalej_dobrze" @click="if_odpowiedz_dobrze = false,
     if_button_dalej_dobrze = false,
     $emit('koniec-quizz')" role="button">dalej</button>
-  <div class="plansza-zle" v-if="if_odpowiedz_zle" role="img" alt="plansza zła odpowiedź"
-    aria-label="plansza odpowiedź nieprawidłowa"></div>
+  <div class="plansza-zle" v-if="if_odpowiedz_zle">
+    <h2 class="naglowek-after-quizz naglowek-zle">Źle!</h2>
+    <h4 class="napis-odpowiedz napis-zle">Błędna odpowiedź.</h4>
+  </div>
   <button class="button-dalej-dobrze anim1" v-if="if_button_dalej_zle" @click="if_odpowiedz_zle = false,
     if_button_dalej_zle = false,
     $emit('koniec-quizz')" role="button">dalej</button>
@@ -215,7 +219,8 @@ function sprawdzOdpowiedz() {
 
 .pytanie1 {
   color: rgb(29, 56, 80);
-  opacity: 0; /* tutaj na potrzeby czytnika można dać 0 */
+  opacity: 0;
+  /* tutaj na potrzeby czytnika można dać 0 */
   font-size: 42px;
   font-style: bold;
   font-weight: 700;
@@ -249,7 +254,7 @@ function sprawdzOdpowiedz() {
 .pole1 {
   left: 200px;
   top: 455px;
-  
+
 }
 
 .pole2 {
@@ -304,11 +309,11 @@ function sprawdzOdpowiedz() {
 
 .button-dalej {
   background-image: url("../assets/sprawdz_odpwowiedz_button1.png");
-    color: rgb(255, 255, 255);
-    font-size: 40px;
-    font-style: bold;
-    font-weight: 700;
-    font-family: "Proxima Nova", sans-serif;
+  color: rgb(255, 255, 255);
+  font-size: 40px;
+  font-style: bold;
+  font-weight: 700;
+  font-family: "Proxima Nova", sans-serif;
   background-size: 394px 87px;
   background-repeat: no-repeat;
   top: 760px;
@@ -351,9 +356,54 @@ function sprawdzOdpowiedz() {
   top: 275px;
 }
 
+.naglowek-after-quizz {
+  color: rgb(255, 255, 255);
+  font-size: 100px;
+  font-style: bold;
+  font-weight: 600;
+  font-family: "Proxima Nova", sans-serif;
+  top: 5px;
+ 
+  height: 88px;
+  width: 333px;
+  position: absolute;
+  z-index: 2;
+}
+
+.naglowek-dobrze{
+ left: 410px;
+}
+
+.naglowek-zle{
+  left: 520px;
+}
+
+.napis-odpowiedz {
+  color: rgb(255, 255, 255);
+  font-size: 70px;
+  font-style: bold;
+  font-weight: 400;
+  font-family: "Proxima Nova", sans-serif;
+  white-space: nowrap;
+  top: 115px;
+  
+  height: 88px;
+  width: 333px;
+  position: absolute;
+  z-index: 2;
+}
+
+.napis-dobrze{
+left: 250px;
+}
+
+.napis-zle{
+left: 310px;
+}
+
 .button-dalej-dobrze {
   /* background-image: url("../assets/przycisk_dalej_imie.png"); */
-   color: rgb(29, 56, 80);
+  color: rgb(29, 56, 80);
   font-size: 80px;
   font-style: bold;
   font-weight: 700;

@@ -16,12 +16,13 @@ fanfary.play();
 </script>
 
 <template>
-    <div class="plansza-win-level-one" role="img" alt="plansza"
-        aria-label="BRAWO, udało Ci się ukończyć poziom 1. Chcesz grać dalej?"></div>
-    <button class="gram-jeszcze-1-level-one anim1" @click="$emit('gram-dalej')" role="button"
-        >gram dalej</button>
-    <button class="zakoncz-gre anim1" @click="$emit('koniec-gry')" role="button"
-        >zakończ grę</button>
+    <div class="plansza-win-level-one">
+        <h2 class="naglowek">BRAWO!</h2>
+        <h4 class="napis">Udało ci się ukończyć <b>Poziom 1</b>.</h4>
+        <h4 class="napis-2">Chcesz grać dalej?</h4>
+    </div>
+    <button class="gram-jeszcze-1-level-one anim1" @click="$emit('gram-dalej')" role="button">gram dalej</button>
+    <button class="zakoncz-gre anim1" @click="$emit('koniec-gry')" role="button">zakończ grę</button>
 
 </template>
 
@@ -33,6 +34,51 @@ fanfary.play();
     width: 1920px;
     top: 0px;
     left: 0px;
+    position: absolute;
+    z-index: 2;
+}
+
+.naglowek {
+    color: rgb(255, 255, 255);
+    font-size: 100px;
+    font-style: bold;
+    font-weight: 600;
+    font-family: "Proxima Nova", sans-serif;
+    top: 140px;
+    left: 780px;
+    height: 88px;
+    width: 333px;
+    position: absolute;
+    z-index: 2;
+
+}
+
+.napis {
+    color: rgb(255, 255, 255);
+    font-size: 70px;
+    font-style: bold;
+    font-weight: 400;
+    font-family: "Proxima Nova", sans-serif;
+    white-space: nowrap;
+    top: 290px;
+    left: 480px;
+    height: 88px;
+    width: 333px;
+    position: absolute;
+    z-index: 2;
+}
+
+.napis-2 {
+    color: rgb(255, 255, 255);
+    font-size: 70px;
+    font-style: bold;
+    font-weight: 400;
+    font-family: "Proxima Nova", sans-serif;
+    white-space: nowrap;
+    top: 380px;
+    left: 660px;
+    height: 88px;
+    width: 333px;
     position: absolute;
     z-index: 2;
 }

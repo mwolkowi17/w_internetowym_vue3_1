@@ -70,7 +70,8 @@ export class Quests {
           ["anonimowość", "emocje", 2],
         ],
         odpowiedz: 1,
-        tresc: "Emotka" + "\xa0  \xa0 \xa0 \xa0 " + "wyraża:",
+        tresc:
+          "Emotka uśmiechniętej buźki" + "\xa0  \xa0 \xa0 \xa0 " + "wyraża:",
       },
       {
         id: 9,
@@ -90,7 +91,7 @@ export class Quests {
           ["strony internetowej", "mailowym", 2],
         ],
         odpowiedz: 1,
-        tresc: "Symbolu" + "\xa0  \xa0 \xa0  " + "używa się w adresie:",
+        tresc: "Symbolu małpy" + "\xa0  \xa0 \xa0  " + "używa się w adresie:",
       },
       {
         id: 12,

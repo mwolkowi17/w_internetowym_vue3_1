@@ -27,7 +27,7 @@ const postac1 = ref("postać")
 //pozycja startowa gracza nr 1
 const krok_gracz1_na_planszy = ref(0);
 //roboczo do edycji quizów
-//const krok_gracz1_na_planszy = ref(2);
+//const krok_gracz1_na_planszy = ref(1);
 
 //zdefinowanie pozycji (mapy wszystkich pozycji) gracza nr 1
 const pozycje_pionka_gracza1 = new PawnMaps().pionek_gracza1;
@@ -48,6 +48,7 @@ const if_widok_pulapki = ref(false);
 const if_widok_quizz2 = ref(false);
 //roboczo do edycji quizów
 //const if_widok_quizz2 = ref(true); 
+
 //widoki szans na planszy
 
 const if_szansa1 = ref(true)
@@ -283,6 +284,7 @@ const odejmijSzanse = () => {
     <div class="tlo_main2" role="img" alt="tło" aria-label="gra planszowa - poziom 2"></div>
     <div class="pionek1" :style="{ left: pionek_left + 'px', top: pionek_top + 'px' }" role="img" alt="ikona"
         aria-label="Pionek"></div>
+    <h3 class="szanse-napis">szanse:</h3>
     <div class="szansa1 szansa_ksztalt1" v-if="if_szansa1" role="img" alt="ikona szansy" aria-label="Szansa 1"></div>
     <div class="szansa2 szansa_ksztalt1" v-if="if_szansa2" role="img" alt="ikona szansy" aria-label="Szansa 2"></div>
     <div class="szansa3 szansa_ksztalt1" v-if="if_szansa3" role="img" alt="ikona szansy" aria-label="Szansa 3"></div>
@@ -321,6 +323,21 @@ const odejmijSzanse = () => {
     width: 116px;
     position: absolute;
 
+}
+
+.szanse-napis{
+    color: rgb(29, 56, 80);
+    font-size: 45px;
+    font-style: bold;
+    font-weight: 600;
+    font-family: "Proxima Nova", sans-serif;
+
+    top: 255px;
+    left: 1465px;
+    height: 88px;
+    width: 333px;
+    position: absolute;
+    z-index: 2;
 }
 
 .kostka1 {

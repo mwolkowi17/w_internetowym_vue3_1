@@ -21,7 +21,7 @@ export class Quests2 {
     this.tab_quizz = [
       {
         id: 1,
-        pytanie: 1,
+        pytanie: 0,
         odpowiedz_text: [
           ["w XX wieku", "w XIX wieku", "w XXI wieku", 1],
           ["w XIX wieku", "w XX wieku", "w XXI wieku", 2],
@@ -32,7 +32,7 @@ export class Quests2 {
       },
       {
         id: 2,
-        pytanie: 2,
+        pytanie: 1,
         odpowiedz_text: [
           [
             "nie klikasz, usuwasz ten mail",
@@ -54,11 +54,11 @@ export class Quests2 {
           ],
         ],
         odpowiedz: 1,
-        tresc: "W e-mailu od niezananej osoby jest link, w który:",
+        tresc: "W e-mailu od nieznanej osoby jest link, w który:",
       },
       {
         id: 4,
-        pytanie: 3,
+        pytanie: 2,
         odpowiedz_text: [
           [
             "muszą być różne",
@@ -84,7 +84,7 @@ export class Quests2 {
       },
       {
         id: 5,
-        pytanie: 4,
+        pytanie: 3,
         odpowiedz_text: [
           ["miły", "obraźliwy", "złośliwy", 1],
           ["obraźliwy", "miły", "złośliwy", 2],
@@ -95,7 +95,7 @@ export class Quests2 {
       },
       {
         id: 7,
-        pytanie: 5,
+        pytanie: 4,
         odpowiedz_text: [
           [
             "pytasz ją o zgodę",
@@ -121,18 +121,18 @@ export class Quests2 {
       },
       {
         id: 9,
-        pytanie: 6,
+        pytanie: 5,
         odpowiedz_text: [
           ["szyfrowane", "bez szyfrowania", "bardzo szybkie", 1],
           ["bez szyfrowania", "szyfrowane", "bardzo szybkie", 2],
           ["bez szyfrowania", "bardzo szybkie", "szyfrowane", 3],
         ],
         odpowiedz: 1,
-        tresc: '"HTTPS"oznacza bezpieczne połączenie:',
+        tresc: '"HTTPS" oznacza bezpieczne połączenie:',
       },
       {
         id: 10,
-        pytanie: 7,
+        pytanie: 6,
         odpowiedz_text: [
           [
             "wylogowujesz się z portali, poczty i<br> innych aplikacji sieciowych",
@@ -149,7 +149,7 @@ export class Quests2 {
           [
             "nie wylogowujesz się",
             "wylogowujesz się tylko z portali",
-            "wylogowujesz się z portali, poczty i<br> innych aplikacji sieciowych",
+            "wylogowujesz się z portali, poczty<br>i innych aplikacji sieciowych",
             3,
           ],
         ],
@@ -158,7 +158,7 @@ export class Quests2 {
       },
       {
         id: 12,
-        pytanie: 8,
+        pytanie: 7,
         odpowiedz_text: [
           ["uprzejmy", "anonimowy", "nieznany", 1],
           ["anonimowy", "uprzejmy", "nieznany", 2],
@@ -169,7 +169,7 @@ export class Quests2 {
       },
       {
         id: 13,
-        pytanie: 9,
+        pytanie: 8,
         odpowiedz_text: [
           [
             "nie przekazujesz nieznajomym",

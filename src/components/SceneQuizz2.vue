@@ -180,13 +180,17 @@ function sprawdzOdpowiedz() {
     <p class="odpowiedz odpowiedz3 anim1"
         v-html="quizz_assets_data.pokaz_zadanie_2(props.miejsceNaPlanszy).odpowiedz_text[nr_zestawu][2]"></p>
     <button class="button-dalej" v-if="if_button_dalej" @click="sprawdzOdpowiedz()" role="button">sprawdź odpowiedź</button>
-    <div class="plansza-dobrze" v-if="if_odpowiedz_dobrze" role="img" alt="plansza dobra odpowiedź"
-        aria-label="plansza odpowiedź prawidłowa"></div>
+    <div class="plansza-dobrze" v-if="if_odpowiedz_dobrze">
+    <h2 class="naglowek-after-quizz naglowek-dobrze">BRAWO!</h2>
+    <h4 class="napis-odpowiedz napis-dobrze">Prawidłowa odpowiedź.</h4>
+    </div>
     <button class="button-dalej-dobrze anim1" v-if="if_button_dalej_dobrze" @click="if_odpowiedz_dobrze = false,
         if_button_dalej_dobrze = false,
         $emit('koniec-quizz')" role="button">dalej</button>
-    <div class="plansza-zle" v-if="if_odpowiedz_zle" role="img" alt="plansza zła odpowiedź"
-        aria-label="plansza odpowiedź nieprawidłowa"></div>
+    <div class="plansza-zle" v-if="if_odpowiedz_zle">
+     <h2 class="naglowek-after-quizz naglowek-zle">Źle!</h2>
+    <h4 class="napis-odpowiedz napis-zle">Błędna odpowiedź.</h4>
+    </div>
     <button class="button-dalej-dobrze anim1" v-if="if_button_dalej_zle" @click="if_odpowiedz_zle = false,
         if_button_dalej_zle = false,
         $emit('koniec-quizz')" role="button" >dalej</button>
@@ -408,6 +412,51 @@ function sprawdzOdpowiedz() {
     position: absolute;
     left: 83px;
     top: 275px;
+}
+
+.naglowek-after-quizz {
+  color: rgb(255, 255, 255);
+  font-size: 100px;
+  font-style: bold;
+  font-weight: 600;
+  font-family: "Proxima Nova", sans-serif;
+  top: 5px;
+ 
+  height: 88px;
+  width: 333px;
+  position: absolute;
+  z-index: 2;
+}
+
+.naglowek-dobrze{
+ left: 410px;
+}
+
+.naglowek-zle{
+  left: 520px;
+}
+
+.napis-odpowiedz {
+  color: rgb(255, 255, 255);
+  font-size: 70px;
+  font-style: bold;
+  font-weight: 400;
+  font-family: "Proxima Nova", sans-serif;
+  white-space: nowrap;
+  top: 115px;
+  
+  height: 88px;
+  width: 333px;
+  position: absolute;
+  z-index: 2;
+}
+
+.napis-dobrze{
+left: 250px;
+}
+
+.napis-zle{
+left: 310px;
 }
 
 .button-dalej-dobrze {

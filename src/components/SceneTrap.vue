@@ -25,7 +25,10 @@ function koniecPulapki() {
 
 </script>
 <template>
-  <div class="pulapka1" alt="cofasz się o dwa pola" role="img" aria-label="Zasadzka - cofasz się dwa pola"></div>
+  <div class="pulapka1">
+    <h2 class="naglowek">ZASADZKA!</h2>
+       <h4 class="napis">Cofasz się o dwa pola.</h4>
+  </div>
   <button class="przycisk_pulapka1 anim1" @click="$emit('koniec-pulapka'); koniecPulapki()" role="button"
     alt="ikona dalej">dalej</button>
 </template>
@@ -39,6 +42,36 @@ function koniecPulapki() {
   position: absolute;
   left: 100px;
   top: 250px;
+}
+
+.naglowek{
+color: rgb(255, 255, 255);
+  font-size: 100px;
+  font-style: bold;
+  font-weight: 600;
+  font-family: "Proxima Nova", sans-serif;
+  top: 5px;
+  left: 350px;
+  height: 88px;
+  width: 333px;
+  position: absolute;
+  z-index: 2;
+ 
+}
+
+.napis{
+color: rgb(255, 255, 255);
+  font-size: 70px;
+  font-style: bold;
+  font-weight: 400;
+  font-family: "Proxima Nova", sans-serif;
+  white-space: nowrap;
+  top: 110px;
+  left: 280px;
+  height: 88px;
+  width: 333px;
+  position: absolute;
+  z-index: 2;
 }
 
 .przycisk_pulapka1 {
