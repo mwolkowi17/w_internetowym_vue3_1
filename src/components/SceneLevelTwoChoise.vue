@@ -10,14 +10,15 @@ onMounted(() => {
 
 })
 </script>
+
 <template>
     <div class="tlo-level2" role="img" alt="tło" aria-label="plansza wyboru poziomu"></div>
         <button class="level-one-button" @click="$emit('wybor-levelu1')" role="button" 
             aria-label="wybierz poziom jeden">poziom 1</button>
         <button class="level-two-button" @click="$emit('wybor-levelu2')" role="button" 
             aria-label="wybierz poziom dwa">poziom 2</button>
-    
 </template>
+
 <style scoped>
 .tlo-level2 {
     background-image: url("../assets/plansza_poziom1_wybor.png");

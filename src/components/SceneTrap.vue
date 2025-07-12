@@ -27,10 +27,9 @@ function koniecPulapki() {
 <template>
   <div class="pulapka1">
     <h2 class="naglowek">ZASADZKA!</h2>
-       <h4 class="napis">Cofasz się o dwa pola.</h4>
+    <h4 class="napis">Cofasz się o dwa pola.</h4>
   </div>
-  <button class="przycisk_pulapka1 anim1" @click="$emit('koniec-pulapka'); koniecPulapki()" role="button"
-    alt="ikona dalej">dalej</button>
+  <button class="przycisk_pulapka1 anim1" @click="$emit('koniec-pulapka'); koniecPulapki()" role="button">dalej</button>
 </template>
 <style scoped>
 .pulapka1 {
@@ -44,8 +43,8 @@ function koniecPulapki() {
   top: 250px;
 }
 
-.naglowek{
-color: rgb(255, 255, 255);
+.naglowek {
+  color: rgb(255, 255, 255);
   font-size: 100px;
   font-style: bold;
   font-weight: 600;
@@ -56,11 +55,11 @@ color: rgb(255, 255, 255);
   width: 333px;
   position: absolute;
   z-index: 2;
- 
+
 }
 
-.napis{
-color: rgb(255, 255, 255);
+.napis {
+  color: rgb(255, 255, 255);
   font-size: 70px;
   font-style: bold;
   font-weight: 400;

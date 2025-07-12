@@ -4,9 +4,9 @@ import { ref } from 'vue'
 const emit = defineEmits(['koniec-planszy'])
 const stageParent = ref(null)
 
+//nieużywana funkcja fullscreen - to obsługuje platforma
 function openFullscreen() {
   console.log("openFullscreen called");
-
 
   const element = stageParent.value;
   console.log("Element to fullscreen:", element);
@@ -21,10 +21,9 @@ function openFullscreen() {
 </script>
 
 <template>
-  <div ref="stageParent" class="tlo" role="img" alt="plansza" aria-label="W internetowym labiryncie">
+  <div ref="stageParent" class="tlo" role="img" alt="plansza startu gry" aria-label="W internetowym labiryncie">
   </div>
   <button class="start" @click="$emit('koniec-planszy')" role="button">START</button>
-
 </template>
 
 <style>
@@ -42,9 +41,7 @@ function openFullscreen() {
   position: absolute;
 }
 
-
 .start {
-  /* background-image: url("../assets/START_przycisk.png"); */
   color: rgb(29, 56, 80);
   font-size: 100px;
   font-style: bold;

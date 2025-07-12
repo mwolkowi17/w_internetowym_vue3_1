@@ -126,7 +126,7 @@ function sprawdzOdpowiedz() {
 </script>
 <template>
   <div class="planszaQuizz1 " :class="eksp1[quizz_assets_data.pokaz_zadanie_2(props.miejsceNaPlanszy).pytanie]"
-    role="img" alt="plansza" aria-label="quizz"></div>
+    role="img" alt="tło" aria-label="pytanie"></div>
 
   <p class="pytanie1">{{ quizz_assets_data.pokaz_zadanie_2(props.miejsceNaPlanszy).tresc }}</p>
   <!-- <p class="pytanie1 anim1" v-html="quizz_assets_data.pokaz_zadanie_2(props.miejsceNaPlanszy).tresc "></p> -->

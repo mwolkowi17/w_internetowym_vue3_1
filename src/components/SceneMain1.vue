@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, onMounted } from 'vue'
 import { metodyPomocnicze } from '../lib/metody-pomocnicze';
 import { PawnMaps } from '../lib/pawn-maps';
 import { Traps } from "../lib/traps";
@@ -17,7 +17,6 @@ onMounted(() => {
     if (elementToFocus) {
         elementToFocus.focus();
     }
-
 })
 
 //roboczo tylko dla starej funkcji
@@ -39,7 +38,7 @@ const ilosc_szans = ref(3);
 const if_rzuc_kostka = ref(true)
 
 //widoczność kostki 
-const if_widok_kostki = ref(true);
+const if_widok_kostki = ref(false);
 
 //widoczność planszy pułapka
 const if_widok_pulapki = ref(false)
@@ -92,7 +91,7 @@ let ruch_lokalny = 0;
 
 let x;
 
-const wyrzuconaWartoscKostki = ref("Kostka - ilość oczek: " + (x + 1));
+const wyrzuconaWartoscKostki = ref("Kostka - liczba oczek: " + (x + 1));
 
 function kostka_click() {
 
@@ -103,7 +102,7 @@ function kostka_click() {
     if_widok_kostki.value = true
     console.log("rzut")
     x = metodyPomocnicze.rzucaj();
-    wyrzuconaWartoscKostki.value = "Kostka - ilość oczek: " + (x + 1);
+    wyrzuconaWartoscKostki.value = "Kostka - liczba oczek: " + (x + 1);
     let wynik_rzutu = x
     console.log(x)
     for (let i = 0; i < 6; i++) {
@@ -327,7 +326,6 @@ const odejmijSzanse = () => {
     height: 116px;
     width: 116px;
     position: absolute;
-
 }
 
 .szanse-napis{
@@ -336,7 +334,6 @@ const odejmijSzanse = () => {
     font-style: bold;
     font-weight: 600;
     font-family: "Proxima Nova", sans-serif;
-
     top: 255px;
     left: 1465px;
     height: 88px;

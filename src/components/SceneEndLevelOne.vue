@@ -1,12 +1,11 @@
 <script setup>
-import { ref, onMounted } from 'vue';
+import { onMounted } from 'vue';
 
 onMounted(() => {
     const elementToFocus = document.querySelector(".gram-jeszcze-1-level-one")
     if (elementToFocus) {
         elementToFocus.focus();
     }
-
 })
 
 defineEmits(['gram-dalej', 'koniec-gry']);

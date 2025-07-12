@@ -13,6 +13,7 @@ onMounted(() => {
 </script>
 <template>
   <div class="tlo1" aria-label="Zasady gry">
+    <!-- tutaj sprawdzić jak czytnik wcag może omijać tel elementy <br> -->
     <p class="instrukcja">
       Znajdujesz się w Wirtualnej Dżungli - aby ją przejść, musisz odpowiedzieć <br>
       prawidłowo na pytania dotyczące internetu. Gra składa się z dwóch<br>
@@ -24,11 +25,12 @@ onMounted(() => {
       Po drodze czekają Cię zasadzki kryjące się na polach oznaczonych<br>
       wykrzykniknikiem. Powodzenia!
     </p>
-    </div>
-    <button class="dalej anim1" @click="$emit('koniec-instrukcja')" role="button" alt="przycisk"
-      aria-label="Przycisk dalej">dalej</button>
-  
+  </div>
+  <button class="dalej anim1" @click="$emit('koniec-instrukcja')" role="button" alt="przycisk"
+    aria-label="Przycisk dalej">dalej</button>
+
 </template>
+
 <style>
 .tlo1 {
   background-image: url("../assets/plansza_zasady_gry.png");
@@ -40,13 +42,13 @@ onMounted(() => {
   position: absolute;
 }
 
-.instrukcja{
+.instrukcja {
   color: rgb(255, 255, 255);
   font-size: 41px;
   font-style: bold;
   font-weight: 600;
   font-family: "Proxima Nova", sans-serif;
-   position: absolute;
+  position: absolute;
   top: 260px;
   left: 310px;
 }
@@ -81,8 +83,6 @@ onMounted(() => {
 /* The animation code */
 @keyframes example {
 
-  /* from {background-color: red;}
-  to {background-color: yellow;} */
   from {
     opacity: 0;
   }
@@ -94,7 +94,6 @@ onMounted(() => {
 
 /* The element to apply the animation to */
 .anim1 {
-
   animation-name: example;
   animation-duration: 1s;
 }

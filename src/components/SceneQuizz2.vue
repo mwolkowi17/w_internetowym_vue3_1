@@ -141,7 +141,7 @@ function sprawdzOdpowiedz() {
 </script>
 <template>
     <div class="planszaQuizz1 " :class="eksp1[quizz_assets_data.pokaz_zadanie_2(props.miejsceNaPlanszy).pytanie]"
-        role="img" alt="tło" aria-label="plansza - quizz"></div>
+        role="img" alt="tło" aria-label="pytanie"></div>
     <!-- <div class="planszaQuizz1 " :class="eksp1[9]"></div> -->
     <p class="pytanie1">{{ quizz_assets_data.pokaz_zadanie_2(props.miejsceNaPlanszy).tresc }}</p>
     <div class="krzyzyk" :class="{ 'krzyzyk1': is_krzyzyk1, 'krzyzyk2': is_krzyzyk2, 'krzyzyk3': is_krzyzyk3 }"

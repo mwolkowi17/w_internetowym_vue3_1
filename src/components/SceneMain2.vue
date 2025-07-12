@@ -39,7 +39,7 @@ const ilosc_szans = ref(4);
 const if_rzuc_kostka = ref(true)
 
 //widoczność kostki 
-const if_widok_kostki = ref(true);
+const if_widok_kostki = ref(false);
 
 //widoczność planszy pułapka
 const if_widok_pulapki = ref(false);
@@ -88,7 +88,7 @@ let ruch_lokalny = 0;
 
 let x;
 
-const wyrzuconaWartoscKostki = ref("Kostka - ilość oczek: " + (x + 1));
+const wyrzuconaWartoscKostki = ref("Kostka - liczba oczek: " + (x + 1));
 
 function kostka_click() {
 
@@ -99,7 +99,7 @@ function kostka_click() {
     if_widok_kostki.value = true
     console.log("rzut")
     x = metodyPomocnicze.rzucaj();
-    wyrzuconaWartoscKostki.value = "Kostka - ilość oczek: " + (x + 1);
+    wyrzuconaWartoscKostki.value = "Kostka - liczba oczek: " + (x + 1);
     let wynik_rzutu = x
     console.log(x)
     for (let i = 0; i < 6; i++) {
@@ -282,13 +282,13 @@ const odejmijSzanse = () => {
 </script>
 <template>
     <div class="tlo_main2" role="img" alt="tło" aria-label="gra planszowa - poziom 2"></div>
-    <div class="pionek1" :style="{ left: pionek_left + 'px', top: pionek_top + 'px' }" role="img" alt="ikona"
+    <div class="pionek1" :style="{ left: pionek_left + 'px', top: pionek_top + 'px' }" role="img" alt="pionek"
         aria-label="Pionek"></div>
     <h3 class="szanse-napis">szanse:</h3>
-    <div class="szansa1 szansa_ksztalt1" v-if="if_szansa1" role="img" alt="ikona szansy" aria-label="Szansa 1"></div>
-    <div class="szansa2 szansa_ksztalt1" v-if="if_szansa2" role="img" alt="ikona szansy" aria-label="Szansa 2"></div>
-    <div class="szansa3 szansa_ksztalt1" v-if="if_szansa3" role="img" alt="ikona szansy" aria-label="Szansa 3"></div>
-    <div class="szansa4 szansa_ksztalt1" v-if="if_szansa4" role="img" alt="ikona szansy" aria-label="Szansa 4"></div>
+    <div class="szansa1 szansa_ksztalt1" v-if="if_szansa1" role="img" alt="gwiazdka ikona szansy" aria-label="Szansa 1"></div>
+    <div class="szansa2 szansa_ksztalt1" v-if="if_szansa2" role="img" alt="gwiazdka ikona szansy" aria-label="Szansa 2"></div>
+    <div class="szansa3 szansa_ksztalt1" v-if="if_szansa3" role="img" alt="gwiazdka ikona szansy" aria-label="Szansa 3"></div>
+    <div class="szansa4 szansa_ksztalt1" v-if="if_szansa4" role="img" alt="gwiazdka ikona szansy" aria-label="Szansa 4"></div>
     <button class="rzut2 anim1" v-if="if_rzuc_kostka" @click="kostka_click()" role="button"
         >Rzut kostką</button>
     <div class="kostka1" :class="{
@@ -298,7 +298,7 @@ const odejmijSzanse = () => {
         'kostka1image4': isSet4,
         'kostka1image5': isSet5,
         'kostka1image6': isSet6
-    }" v-if="if_widok_kostki" role="img" alt="ikona widoku kostki" :aria-label=wyrzuconaWartoscKostki></div>
+    }" v-if="if_widok_kostki" role="img" alt="kostka do gry" :aria-label=wyrzuconaWartoscKostki></div>
     <SceneTrap v-if="if_widok_pulapki" @koniec-pulapka="if_widok_pulapki = false, koniecPulapki()" rel="preload" />
     <SceneQuizz2 v-if="if_widok_quizz2" @koniec-quizz="if_widok_quizz2 = false, koniecQuizu()"
         @odejmij-szanse="odejmijSzanse" msg="Hej" :miejsceNaPlanszy="krok_gracz1_na_planszy" rel="preload" />

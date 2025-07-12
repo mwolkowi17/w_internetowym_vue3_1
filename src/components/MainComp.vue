@@ -24,8 +24,7 @@ const if_win = ref(false)
 const if_loose = ref(false)
 const if_loose_after_level_one = ref(false)
 
-
-
+//sterowanie widokami gry
 function change() {
     if_plansza_poczatkowa.value = false;
     if_instrukcja.value = true;
@@ -123,9 +122,7 @@ onMounted(async () => {
     newImages.value = images
 })
 
-
 </script>
-
 
 
 <template>

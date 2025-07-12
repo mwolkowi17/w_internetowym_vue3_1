@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted } from 'vue';
+import { onMounted } from 'vue';
 defineEmits(['wybor-levelu1']);
 
 onMounted(() => {
@@ -16,7 +16,7 @@ onMounted(() => {
     </div>
     <button class="level-one-button" @click="$emit('wybor-levelu1')" role="button" 
          autofocus>poziom 1</button>
-    <button class="level-two-button" role="img" aria-label="poziom 2 niedostępny" disabled>poziom 2</button>
+    <button class="level-two-button" role="img" aria-label="poziom 2 niedostępny" aria-disabled ="true" disabled>poziom 2</button>
 
 </template>
 
@@ -37,7 +37,6 @@ onMounted(() => {
     font-style: bold;
     font-weight: 700;
     font-family: "Proxima Nova", sans-serif;
-    /* background-image: url("../assets/poziom1_button.png"); */
     background-size: 595px 200px;
     background-position: -1px -1px;
     position: absolute;
@@ -53,7 +52,6 @@ onMounted(() => {
 }
 
 .level-one-button:focus {
-    /* outline: thick double #08e926; */
     outline: 8px solid #08e926;
 }
 
@@ -63,7 +61,6 @@ onMounted(() => {
     font-style: bold;
     font-weight: 700;
     font-family: "Proxima Nova", sans-serif;
-    /* background-image: url("../assets/poziom2_nieaktywny_popr.png"); */
     background-size: 595px 200px;
     background-position: -2px -1px;
     position: absolute;

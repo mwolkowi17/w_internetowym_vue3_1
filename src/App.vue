@@ -1,6 +1,5 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
-import HelloWorld from './components/HelloWorld.vue'
 
 import MainComp from './components/MainComp.vue'
 const scale = ref(1)
