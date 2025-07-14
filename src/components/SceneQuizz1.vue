@@ -12,7 +12,7 @@ const props = defineProps({
 });
 
 onMounted(() => {
-  const elementToFocus = document.querySelector(".pole1")
+  const elementToFocus = document.querySelector(".pojedyncza-odpowiedz")
   if (elementToFocus) {
     elementToFocus.focus();
   }
@@ -127,10 +127,36 @@ function sprawdzOdpowiedz() {
 <template>
   <div class="planszaQuizz1 " :class="eksp1[quizz_assets_data.pokaz_zadanie_2(props.miejsceNaPlanszy).pytanie]"
     role="img" alt="tło" aria-label="pytanie"></div>
-
   <p class="pytanie1">{{ quizz_assets_data.pokaz_zadanie_2(props.miejsceNaPlanszy).tresc }}</p>
-  <!-- <p class="pytanie1 anim1" v-html="quizz_assets_data.pokaz_zadanie_2(props.miejsceNaPlanszy).tresc "></p> -->
-  <div class="krzyzyk" :class="{ 'krzyzyk1': is_krzyzyk1, 'krzyzyk2': is_krzyzyk2 }" role="img"
+
+  <ul class="lista-odpowiedzi" role="list">
+    <li>
+      <div class="pojedyncza-odpowiedz" role="checkbox" tabindex="0">
+      <span class="krzyzyk" :class="{ 'krzyzyk1': is_krzyzyk1, 'krzyzyk2': is_krzyzyk2 }" role="img"
+        alt="zaznaczenie odpowiedzi" aria-label="zaznaczona odpowiedź"></span>
+      <span class="pole-zazn pole1 anim1" @click="is_krzyzyk1 = true,
+        is_krzyzyk2 = false,
+        if_button_dalej = true,
+        zaznaczenie1()" role="button" alt="pole zaznaczenia" aria-label="zaznacz odpowiedź 1"></span>
+       
+          <span class="odpowiedz odpowiedz1 anim1">{{
+        quizz_assets_data.pokaz_zadanie_2(props.miejsceNaPlanszy).odpowiedz_text[nr_zestawu][0] }}</span>
+         </div>
+    </li>
+
+    <li>
+    <div class="pojedyncza-odpowiedz" role="checkbox" tabindex="0">
+      <span class="pole-zazn pole2 anim1" @click="is_krzyzyk2 = true,
+        is_krzyzyk1 = false,
+        if_button_dalej = true,
+        zaznaczenie2()" role="img" alt="pole zaznaczenia" aria-label="zaznacz odpowiedź 2"></span>
+      <span class="odpowiedz odpowiedz2 anim1">{{
+        quizz_assets_data.pokaz_zadanie_2(props.miejsceNaPlanszy).odpowiedz_text[nr_zestawu][1] }}</span>
+      
+      </div>
+    </li>
+  </ul>
+  <!-- <div class="krzyzyk" :class="{ 'krzyzyk1': is_krzyzyk1, 'krzyzyk2': is_krzyzyk2 }" role="img"
     alt="zaznaczenie odpowiedzi" aria-label="zaznaczona odpowiedź"></div>
   <button class="pole-zazn pole1 anim1" @click="is_krzyzyk1 = true,
     is_krzyzyk2 = false,
@@ -144,7 +170,7 @@ function sprawdzOdpowiedz() {
     if_button_dalej = true,
     zaznaczenie2()" role="img" alt="pole zaznaczenia" aria-label="zaznacz odpowiedź 2"></button>
   <p class="odpowiedz odpowiedz2 anim1">{{
-    quizz_assets_data.pokaz_zadanie_2(props.miejsceNaPlanszy).odpowiedz_text[nr_zestawu][1] }}</p>
+    quizz_assets_data.pokaz_zadanie_2(props.miejsceNaPlanszy).odpowiedz_text[nr_zestawu][1] }}</p> -->
   <button class="button-dalej" v-if="if_button_dalej" @click="sprawdzOdpowiedz()" role="button"
     alt="przycisk sprawdź">sprawdź odpowiedź</button>
   <div class="plansza-dobrze" v-if="if_odpowiedz_dobrze">
@@ -231,14 +257,43 @@ function sprawdzOdpowiedz() {
   left: 205px;
 }
 
+ul{
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+}
+
+li{
+  margin-bottom: 20px;
+}
+.lista-odpowiedzi{
+ position: absolute;
+ left: 180px;
+ top: 455px;
+ list-style: none;
+}
+
+.pojedyncza-odpowiedz{
+  display: flex;
+  align-items: center;
+  padding: .5rem 1rem;
+}
+
+.pojedyncza-odpowiedz:focus{
+  outline: 8px solid #9a009e !important;
+}
+
 .pole-zazn {
   /* background-image: url("../assets/kratka.png");
   background-size: 50px 50px;
   background-repeat: no-repeat; */
   border: rgb(29, 56, 80) solid 2px;
   height: 81px;
+  /* height: 1rem; */
   width: 81px;
-  position: absolute;
+  /* width: 1rem; */
+  margin-right: 1rem;
+  /* position: absolute; */
 
 }
 
@@ -252,14 +307,14 @@ function sprawdzOdpowiedz() {
 }
 
 .pole1 {
-  left: 200px;
-  top: 455px;
+  /* left: 200px;
+  top: 455px; */
 
 }
 
 .pole2 {
-  left: 200px;
-  top: 585px;
+  /* left: 200px;
+  top: 585px; */
 }
 
 
@@ -275,14 +330,14 @@ function sprawdzOdpowiedz() {
 }
 
 .krzyzyk1 {
-  top: 458px;
-  left: 204px;
+  top: 15px;
+  left: 62px;
   visibility: visible;
 }
 
 .krzyzyk2 {
-  top: 588px;
-  left: 204px;
+  top: 135px;
+  left: 62px;
   visibility: visible;
 }
 
@@ -293,18 +348,18 @@ function sprawdzOdpowiedz() {
   font-weight: 700;
   font-family: "Proxima Nova", sans-serif;
   white-space: nowrap;
-  position: absolute;
+  /* position: absolute; */
 
 }
 
 .odpowiedz1 {
-  top: 423px;
-  left: 300px;
+  /* top: 423px;
+  left: 300px; */
 }
 
 .odpowiedz2 {
-  top: 552px;
-  left: 300px;
+  /* top: 552px;
+  left: 300px; */
 }
 
 .button-dalej {
@@ -363,18 +418,18 @@ function sprawdzOdpowiedz() {
   font-weight: 600;
   font-family: "Proxima Nova", sans-serif;
   top: 5px;
- 
+
   height: 88px;
   width: 333px;
   position: absolute;
   z-index: 2;
 }
 
-.naglowek-dobrze{
- left: 410px;
+.naglowek-dobrze {
+  left: 410px;
 }
 
-.naglowek-zle{
+.naglowek-zle {
   left: 520px;
 }
 
@@ -386,19 +441,19 @@ function sprawdzOdpowiedz() {
   font-family: "Proxima Nova", sans-serif;
   white-space: nowrap;
   top: 115px;
-  
+
   height: 88px;
   width: 333px;
   position: absolute;
   z-index: 2;
 }
 
-.napis-dobrze{
-left: 250px;
+.napis-dobrze {
+  left: 250px;
 }
 
-.napis-zle{
-left: 310px;
+.napis-zle {
+  left: 310px;
 }
 
 .button-dalej-dobrze {
