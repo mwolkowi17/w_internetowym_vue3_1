@@ -23,10 +23,10 @@ onMounted(() => {
 const postac1 = ref("postać")
 
 //pozycja startowa gracza nr 1
-const krok_gracz1_na_planszy = ref(0);
+//const krok_gracz1_na_planszy = ref(0);
 
 //roboczo do edycji pytań
-//const krok_gracz1_na_planszy = ref(5);
+const krok_gracz1_na_planszy = ref(5);
 
 //zdefinowanie pozycji (mapy wszystkich pozycji) gracza nr 1
 const pozycje_pionka_gracza1 = new PawnMaps().pionek_gracza1;
@@ -44,9 +44,9 @@ const if_widok_kostki = ref(false);
 const if_widok_pulapki = ref(false)
 
 //widoczność planszy quizz1
-const if_widok_quizz1 = ref(false);
+//const if_widok_quizz1 = ref(false);
 //roboczo do edycji pytań
-//const if_widok_quizz1 = ref(true);
+const if_widok_quizz1 = ref(true);
 
 //widoki szans na planszy
 

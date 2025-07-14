@@ -41,6 +41,10 @@ const if_button_dalej_zle = ref(false);
 const czy_odpowiedz_poprawna = ref(false);
 const czy_odpowiedz_zla = ref(false);
 
+//czy zaznaczone
+const zaznaczenieOdpowiedzi1 = ref(false)
+const zaznaczenieOdpowiedzi2 = ref(false)
+
 
 const eksp1 = [
   "planszaQuizz1nr1",
@@ -61,11 +65,15 @@ function zaznaczenie1() {
     console.log("Odpowiedź poprawna");
     czy_odpowiedz_poprawna.value = true;
     czy_odpowiedz_zla.value = false;
+    zaznaczenieOdpowiedzi1.value = true
+    zaznaczenieOdpowiedzi2.value = false
 
   } else {
     console.log("Odpowiedź zła");
     czy_odpowiedz_poprawna.value = false;
     czy_odpowiedz_zla.value = true;
+    zaznaczenieOdpowiedzi1.value = true
+    zaznaczenieOdpowiedzi2.value = false
   }
 }
 
@@ -75,10 +83,14 @@ function zaznaczenie2() {
     console.log("Odpowiedź poprawna");
     czy_odpowiedz_poprawna.value = true;
     czy_odpowiedz_zla.value = false;
+    zaznaczenieOdpowiedzi1.value = false
+    zaznaczenieOdpowiedzi2.value = true
   } else {
     console.log("Odpowiedź zła");
     czy_odpowiedz_poprawna.value = false;
     czy_odpowiedz_zla.value = true;
+    zaznaczenieOdpowiedzi1.value = false
+    zaznaczenieOdpowiedzi2.value = true
   }
 }
 
@@ -131,28 +143,36 @@ function sprawdzOdpowiedz() {
 
   <ul class="lista-odpowiedzi" role="list">
     <li>
-      <div class="pojedyncza-odpowiedz" role="checkbox" tabindex="0">
-      <span class="krzyzyk" :class="{ 'krzyzyk1': is_krzyzyk1, 'krzyzyk2': is_krzyzyk2 }" role="img"
-        alt="zaznaczenie odpowiedzi" aria-label="zaznaczona odpowiedź"></span>
-      <span class="pole-zazn pole1 anim1" @click="is_krzyzyk1 = true,
-        is_krzyzyk2 = false,
-        if_button_dalej = true,
-        zaznaczenie1()" role="button" alt="pole zaznaczenia" aria-label="zaznacz odpowiedź 1"></span>
-       
-          <span class="odpowiedz odpowiedz1 anim1">{{
-        quizz_assets_data.pokaz_zadanie_2(props.miejsceNaPlanszy).odpowiedz_text[nr_zestawu][0] }}</span>
-         </div>
+      <!-- <div class="pojedyncza-odpowiedz" role="checkbox" tabindex="0" :aria-checked={zaznaczenieOdpowiedzi1}> -->
+      <div class="pojedyncza-odpowiedz" role="checkbox" tabindex="0" :aria-checked="zaznaczenieOdpowiedzi1" @click="is_krzyzyk1 = true,
+          is_krzyzyk2 = false,
+          if_button_dalej = true,
+          zaznaczenie1()" @keydown.enter="is_krzyzyk1 = true,
+          is_krzyzyk2 = false,
+          if_button_dalej = true,
+          zaznaczenie1()" >
+        <span class="krzyzyk" :class="{ 'krzyzyk1': is_krzyzyk1, 'krzyzyk2': is_krzyzyk2 }" 
+          alt="zaznaczenie odpowiedzi" ></span>
+        <span class="pole-zazn pole1 anim1" aria-label="zaznacz odpowiedź 1"></span>
+
+        <span class="odpowiedz odpowiedz1 anim1">{{
+          quizz_assets_data.pokaz_zadanie_2(props.miejsceNaPlanszy).odpowiedz_text[nr_zestawu][0] }}</span>
+      </div>
     </li>
 
     <li>
-    <div class="pojedyncza-odpowiedz" role="checkbox" tabindex="0">
-      <span class="pole-zazn pole2 anim1" @click="is_krzyzyk2 = true,
-        is_krzyzyk1 = false,
-        if_button_dalej = true,
-        zaznaczenie2()" role="img" alt="pole zaznaczenia" aria-label="zaznacz odpowiedź 2"></span>
-      <span class="odpowiedz odpowiedz2 anim1">{{
-        quizz_assets_data.pokaz_zadanie_2(props.miejsceNaPlanszy).odpowiedz_text[nr_zestawu][1] }}</span>
-      
+      <!-- <div class="pojedyncza-odpowiedz" role="checkbox" tabindex="0" :aria-checked={zaznaczenieOdpowiedzi1}> -->
+      <div class="pojedyncza-odpowiedz" role="checkbox" tabindex="0" :aria-checked="zaznaczenieOdpowiedzi2" @click="is_krzyzyk2 = true,
+          is_krzyzyk1 = false,
+          if_button_dalej = true,
+          zaznaczenie2()" @keydown.enter="is_krzyzyk2 = true,
+          is_krzyzyk1 = false,
+          if_button_dalej = true,
+          zaznaczenie2()">
+        <span class="pole-zazn pole2 anim1" aria-label="zaznacz odpowiedź 2"></span>
+        <span class="odpowiedz odpowiedz2 anim1">{{
+          quizz_assets_data.pokaz_zadanie_2(props.miejsceNaPlanszy).odpowiedz_text[nr_zestawu][1] }}</span>
+
       </div>
     </li>
   </ul>
@@ -257,29 +277,30 @@ function sprawdzOdpowiedz() {
   left: 205px;
 }
 
-ul{
+ul {
   display: block;
   margin-block-start: 1em;
   margin-block-end: 1em;
 }
 
-li{
+li {
   margin-bottom: 20px;
 }
-.lista-odpowiedzi{
- position: absolute;
- left: 180px;
- top: 455px;
- list-style: none;
+
+.lista-odpowiedzi {
+  position: absolute;
+  left: 180px;
+  top: 455px;
+  list-style: none;
 }
 
-.pojedyncza-odpowiedz{
+.pojedyncza-odpowiedz {
   display: flex;
   align-items: center;
   padding: .5rem 1rem;
 }
 
-.pojedyncza-odpowiedz:focus{
+.pojedyncza-odpowiedz:focus {
   outline: 8px solid #9a009e !important;
 }
 
