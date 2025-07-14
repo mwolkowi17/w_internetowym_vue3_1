@@ -141,7 +141,7 @@ function sprawdzOdpowiedz() {
     role="img" alt="tło" aria-label="pytanie"></div>
   <p class="pytanie1">{{ quizz_assets_data.pokaz_zadanie_2(props.miejsceNaPlanszy).tresc }}</p>
 
-  <ul class="lista-odpowiedzi" role="list">
+  <ul class="lista-odpowiedzi" role="presentation">
     <li>
       <!-- <div class="pojedyncza-odpowiedz" role="checkbox" tabindex="0" :aria-checked={zaznaczenieOdpowiedzi1}> -->
       <div class="pojedyncza-odpowiedz" role="checkbox" tabindex="0" :aria-checked="zaznaczenieOdpowiedzi1" @click="is_krzyzyk1 = true,
@@ -153,9 +153,9 @@ function sprawdzOdpowiedz() {
           zaznaczenie1()" >
         <span class="krzyzyk" :class="{ 'krzyzyk1': is_krzyzyk1, 'krzyzyk2': is_krzyzyk2 }" 
           alt="zaznaczenie odpowiedzi" ></span>
-        <span class="pole-zazn pole1 anim1" aria-label="zaznacz odpowiedź 1"></span>
+        <span class="pole-zazn anim1" aria-label="zaznacz odpowiedź 1"></span>
 
-        <span class="odpowiedz odpowiedz1 anim1">{{
+        <span class="odpowiedz anim1">{{
           quizz_assets_data.pokaz_zadanie_2(props.miejsceNaPlanszy).odpowiedz_text[nr_zestawu][0] }}</span>
       </div>
     </li>
@@ -169,8 +169,8 @@ function sprawdzOdpowiedz() {
           is_krzyzyk1 = false,
           if_button_dalej = true,
           zaznaczenie2()">
-        <span class="pole-zazn pole2 anim1" aria-label="zaznacz odpowiedź 2"></span>
-        <span class="odpowiedz odpowiedz2 anim1">{{
+        <span class="pole-zazn anim1" aria-label="zaznacz odpowiedź 2"></span>
+        <span class="odpowiedz anim1">{{
           quizz_assets_data.pokaz_zadanie_2(props.miejsceNaPlanszy).odpowiedz_text[nr_zestawu][1] }}</span>
 
       </div>
@@ -327,16 +327,7 @@ li {
   outline: 8px solid #9a009e !important;
 }
 
-.pole1 {
-  /* left: 200px;
-  top: 455px; */
 
-}
-
-.pole2 {
-  /* left: 200px;
-  top: 585px; */
-}
 
 
 .krzyzyk {
@@ -373,15 +364,6 @@ li {
 
 }
 
-.odpowiedz1 {
-  /* top: 423px;
-  left: 300px; */
-}
-
-.odpowiedz2 {
-  /* top: 552px;
-  left: 300px; */
-}
 
 .button-dalej {
   background-image: url("../assets/sprawdz_odpwowiedz_button1.png");
