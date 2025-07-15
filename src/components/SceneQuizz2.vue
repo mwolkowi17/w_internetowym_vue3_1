@@ -42,6 +42,11 @@ const if_button_dalej_zle = ref(false);
 const czy_odpowiedz_poprawna = ref(false);
 const czy_odpowiedz_zla = ref(false);
 
+//czy zaznaczone
+const zaznaczenieOdpowiedzi1 = ref(false)
+const zaznaczenieOdpowiedzi2 = ref(false)
+const zaznaczenieOdpowiedzi3 = ref(false)
+
 
 const eksp1 = [
     "planszaQuizz1nr1",
@@ -62,11 +67,17 @@ function zaznaczenie1() {
         console.log("Odpowiedź poprawna");
         czy_odpowiedz_poprawna.value = true;
         czy_odpowiedz_zla.value = false;
+        zaznaczenieOdpowiedzi1.value = true
+        zaznaczenieOdpowiedzi2.value = false
+        zaznaczenieOdpowiedzi3.value = false
 
     } else {
         console.log("Odpowiedź zła");
         czy_odpowiedz_poprawna.value = false;
         czy_odpowiedz_zla.value = true;
+        zaznaczenieOdpowiedzi1.value = true
+        zaznaczenieOdpowiedzi2.value = false
+        zaznaczenieOdpowiedzi3.value = false
     }
 }
 
@@ -76,10 +87,16 @@ function zaznaczenie2() {
         console.log("Odpowiedź poprawna");
         czy_odpowiedz_poprawna.value = true;
         czy_odpowiedz_zla.value = false;
+        zaznaczenieOdpowiedzi1.value = false
+        zaznaczenieOdpowiedzi2.value = true
+        zaznaczenieOdpowiedzi3.value = false
     } else {
         console.log("Odpowiedź zła");
         czy_odpowiedz_poprawna.value = false;
         czy_odpowiedz_zla.value = true;
+        zaznaczenieOdpowiedzi1.value = false
+        zaznaczenieOdpowiedzi2.value = true
+        zaznaczenieOdpowiedzi3.value = false
     }
 }
 
@@ -89,10 +106,16 @@ function zaznaczenie3() {
         console.log("Odpowiedź poprawna");
         czy_odpowiedz_poprawna.value = true;
         czy_odpowiedz_zla.value = false;
+        zaznaczenieOdpowiedzi1.value = false
+        zaznaczenieOdpowiedzi2.value = false
+        zaznaczenieOdpowiedzi3.value = true
     } else {
         console.log("Odpowiedź zła");
         czy_odpowiedz_poprawna.value = false;
         czy_odpowiedz_zla.value = true;
+        zaznaczenieOdpowiedzi1.value = false
+        zaznaczenieOdpowiedzi2.value = false
+        zaznaczenieOdpowiedzi3.value = true
     }
 }
 
@@ -144,7 +167,71 @@ function sprawdzOdpowiedz() {
         role="img" alt="tło" aria-label="pytanie"></div>
     <!-- <div class="planszaQuizz1 " :class="eksp1[9]"></div> -->
     <p class="pytanie1">{{ quizz_assets_data.pokaz_zadanie_2(props.miejsceNaPlanszy).tresc }}</p>
-    <div class="krzyzyk" :class="{ 'krzyzyk1': is_krzyzyk1, 'krzyzyk2': is_krzyzyk2, 'krzyzyk3': is_krzyzyk3 }"
+    <ul class="lista-odpowiedzi" role="presentation">
+        <li>
+            <div class="pojedyncza-odpowiedz" role="checkbox" tabindex="0" :aria-checked="zaznaczenieOdpowiedzi1"
+                @click="is_krzyzyk1 = true,
+                    is_krzyzyk2 = false,
+                    is_krzyzyk3 = false,
+                    if_button_dalej = true,
+                    zaznaczenie1()" @keydown.enter="is_krzyzyk1 = true,
+                        is_krzyzyk2 = false,
+                        is_krzyzyk3 = false,
+                        if_button_dalej = true,
+                        zaznaczenie1()">
+                <span class="krzyzyk"
+                    :class="{ 'krzyzyk1': is_krzyzyk1, 'krzyzyk2': is_krzyzyk2, 'krzyzyk3': is_krzyzyk3 }" role="img"
+                    alt="zaznaczenie odpowiedzi" aria-label="zaznaczona odpowiedź"></span>
+                <span class="pole-zazn  anim1" 
+                    aria-label="zaznacz odpowiedź 1"></span>
+                <span class="odpowiedz anim1"
+                    v-html="quizz_assets_data.pokaz_zadanie_2(props.miejsceNaPlanszy).odpowiedz_text[nr_zestawu][0]">
+                </span>
+            </div>
+        </li>
+        <li>
+            <div class="pojedyncza-odpowiedz" role="checkbox" tabindex="0" :aria-checked="zaznaczenieOdpowiedzi2"
+                @click="is_krzyzyk2 = true,
+                    is_krzyzyk1 = false,
+                    is_krzyzyk3 = false,
+                    if_button_dalej = true,
+                    zaznaczenie2()" @keydown.enter="is_krzyzyk2 = true,
+                        is_krzyzyk1 = false,
+                        is_krzyzyk3 = false,
+                        if_button_dalej = true,
+                        zaznaczenie2()">
+                <span class="pole-zazn anim1" aria-label="zaznacz odpowiedź 2"></span>
+
+                <span class="odpowiedz anim1"
+                    v-html="quizz_assets_data.pokaz_zadanie_2(props.miejsceNaPlanszy).odpowiedz_text[nr_zestawu][1]">
+                </span>
+            </div>
+        </li>
+        <li>
+            <div class="pojedyncza-odpowiedz" role="checkbox" tabindex="0" :aria-checked="zaznaczenieOdpowiedzi3"
+                @click="is_krzyzyk3 = true,
+                    is_krzyzyk1 = false,
+                    is_krzyzyk2 = false,
+                    if_button_dalej = true,
+                    zaznaczenie3()" @keydown.enter="is_krzyzyk3 = true,
+                        is_krzyzyk1 = false,
+                        is_krzyzyk2 = false,
+                        if_button_dalej = true,
+                        zaznaczenie3()">
+                <span class="pole-zazn anim1" aria-label="zaznacz odpowiedź 3"></span>
+
+                <span class="odpowiedz anim1"
+                    v-html="quizz_assets_data.pokaz_zadanie_2(props.miejsceNaPlanszy).odpowiedz_text[nr_zestawu][2]">
+                </span>
+            </div>
+        </li>
+
+
+
+
+
+    </ul>
+    <!-- <div class="krzyzyk" :class="{ 'krzyzyk1': is_krzyzyk1, 'krzyzyk2': is_krzyzyk2, 'krzyzyk3': is_krzyzyk3 }"
         role="img" alt="zaznaczenie odpowiedzi" aria-label="zaznaczona odpowiedź"></div>
     <button class="pole-zazn pole1 anim1" @click="is_krzyzyk1 = true,
         is_krzyzyk2 = false,
@@ -152,8 +239,7 @@ function sprawdzOdpowiedz() {
         if_button_dalej = true,
         zaznaczenie1()" role="img" alt="pole zaznaczenia" aria-label="zaznacz odpowiedź 1"></button>
 
-    <!-- <p class="odpowiedz odpowiedz1">{{
-        quizz_assets_data.pokaz_zadanie_2(props.miejsceNaPlanszy).odpowiedz_text[nr_zestawu][0]}}</p> -->
+  
     <p class="odpowiedz odpowiedz1 anim1"
         v-html="quizz_assets_data.pokaz_zadanie_2(props.miejsceNaPlanszy).odpowiedz_text[nr_zestawu][0]"></p>
     <button class="pole-zazn pole2 anim1" @click="is_krzyzyk2 = true,
@@ -163,8 +249,7 @@ function sprawdzOdpowiedz() {
         zaznaczenie2()
         " role="img" alt="pole zaznaczenia" aria-label="zaznacz odpowiedź 2"></button>
 
-    <!-- <p class="odpowiedz odpowiedz2">{{
-        quizz_assets_data.pokaz_zadanie_2(props.miejsceNaPlanszy).odpowiedz_text[nr_zestawu][1] }}</p> -->
+   
     <p class="odpowiedz odpowiedz2 anim1"
         v-html="quizz_assets_data.pokaz_zadanie_2(props.miejsceNaPlanszy).odpowiedz_text[nr_zestawu][1]">
     </p>
@@ -175,25 +260,26 @@ function sprawdzOdpowiedz() {
         zaznaczenie3()
         " role="img" alt="przycisk" aria-label="zaznacz odpowiedź 3"></button>
 
-    <!-- <p class="odpowiedz odpowiedz3">{{
-        quizz_assets_data.pokaz_zadanie_2(props.miejsceNaPlanszy).odpowiedz_text[nr_zestawu][2] }}</p> -->
+   
     <p class="odpowiedz odpowiedz3 anim1"
-        v-html="quizz_assets_data.pokaz_zadanie_2(props.miejsceNaPlanszy).odpowiedz_text[nr_zestawu][2]"></p>
-    <button class="button-dalej" v-if="if_button_dalej" @click="sprawdzOdpowiedz()" role="button">sprawdź odpowiedź</button>
+        v-html="quizz_assets_data.pokaz_zadanie_2(props.miejsceNaPlanszy).odpowiedz_text[nr_zestawu][2]"></p> -->
+
+    <button class="button-dalej" v-if="if_button_dalej" @click="sprawdzOdpowiedz()" role="button">sprawdź
+        odpowiedź</button>
     <div class="plansza-dobrze" v-if="if_odpowiedz_dobrze">
-    <h2 class="naglowek-after-quizz naglowek-dobrze">BRAWO!</h2>
-    <h4 class="napis-odpowiedz napis-dobrze">Prawidłowa odpowiedź.</h4>
+        <h2 class="naglowek-after-quizz naglowek-dobrze">BRAWO!</h2>
+        <h4 class="napis-odpowiedz napis-dobrze">Prawidłowa odpowiedź.</h4>
     </div>
     <button class="button-dalej-dobrze anim1" v-if="if_button_dalej_dobrze" @click="if_odpowiedz_dobrze = false,
         if_button_dalej_dobrze = false,
         $emit('koniec-quizz')" role="button">dalej</button>
     <div class="plansza-zle" v-if="if_odpowiedz_zle">
-     <h2 class="naglowek-after-quizz naglowek-zle">Źle!</h2>
-    <h4 class="napis-odpowiedz napis-zle">Błędna odpowiedź.</h4>
+        <h2 class="naglowek-after-quizz naglowek-zle">Źle!</h2>
+        <h4 class="napis-odpowiedz napis-zle">Błędna odpowiedź.</h4>
     </div>
     <button class="button-dalej-dobrze anim1" v-if="if_button_dalej_zle" @click="if_odpowiedz_zle = false,
         if_button_dalej_zle = false,
-        $emit('koniec-quizz')" role="button" >dalej</button>
+        $emit('koniec-quizz')" role="button">dalej</button>
 
 </template>
 
@@ -263,6 +349,33 @@ function sprawdzOdpowiedz() {
     left: 190px;
 }
 
+ul {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+}
+
+li {
+    margin-bottom: 20px;
+}
+
+.lista-odpowiedzi {
+    position: absolute;
+    left: 180px;
+    top: 455px;
+    list-style: none;
+}
+
+.pojedyncza-odpowiedz {
+    display: flex;
+    align-items: center;
+    padding: .5rem 1rem;
+}
+
+.pojedyncza-odpowiedz:focus {
+    outline: 8px solid #9a009e !important;
+}
+
 .pole-zazn {
     /* background-image: url("../assets/kratka.png");
     background-size: 50px 50px;
@@ -270,7 +383,8 @@ function sprawdzOdpowiedz() {
     border: rgb(29, 56, 80) solid 2px;
     height: 81px;
     width: 81px;
-    position: absolute;
+    margin-right: 1rem;
+    /* position: absolute; */
 }
 
 .pole-zazn:hover {
@@ -322,20 +436,20 @@ function sprawdzOdpowiedz() {
 }
 
 .krzyzyk1 {
-    top: 458px;
-    left: 204px;
+    top: 15px;
+    left: 62px;
     visibility: visible;
 }
 
 .krzyzyk2 {
-    top: 588px;
-    left: 204px;
+    top: 135px;
+    left: 62px;
     visibility: visible;
 }
 
 .krzyzyk3 {
-    top: 718px;
-    left: 204px;
+    top: 255px;
+    left: 62px;
     visibility: visible;
 }
 
@@ -346,7 +460,7 @@ function sprawdzOdpowiedz() {
     font-weight: 700;
     font-family: "Proxima Nova", sans-serif;
     white-space: nowrap;
-    position: absolute;
+    /* position: absolute; */
 
 }
 
@@ -415,48 +529,48 @@ function sprawdzOdpowiedz() {
 }
 
 .naglowek-after-quizz {
-  color: rgb(255, 255, 255);
-  font-size: 100px;
-  font-style: bold;
-  font-weight: 600;
-  font-family: "Proxima Nova", sans-serif;
-  top: 5px;
- 
-  height: 88px;
-  width: 333px;
-  position: absolute;
-  z-index: 2;
+    color: rgb(255, 255, 255);
+    font-size: 100px;
+    font-style: bold;
+    font-weight: 600;
+    font-family: "Proxima Nova", sans-serif;
+    top: 5px;
+
+    height: 88px;
+    width: 333px;
+    position: absolute;
+    z-index: 2;
 }
 
-.naglowek-dobrze{
- left: 410px;
+.naglowek-dobrze {
+    left: 410px;
 }
 
-.naglowek-zle{
-  left: 520px;
+.naglowek-zle {
+    left: 520px;
 }
 
 .napis-odpowiedz {
-  color: rgb(255, 255, 255);
-  font-size: 70px;
-  font-style: bold;
-  font-weight: 400;
-  font-family: "Proxima Nova", sans-serif;
-  white-space: nowrap;
-  top: 115px;
-  
-  height: 88px;
-  width: 333px;
-  position: absolute;
-  z-index: 2;
+    color: rgb(255, 255, 255);
+    font-size: 70px;
+    font-style: bold;
+    font-weight: 400;
+    font-family: "Proxima Nova", sans-serif;
+    white-space: nowrap;
+    top: 115px;
+
+    height: 88px;
+    width: 333px;
+    position: absolute;
+    z-index: 2;
 }
 
-.napis-dobrze{
-left: 250px;
+.napis-dobrze {
+    left: 250px;
 }
 
-.napis-zle{
-left: 310px;
+.napis-zle {
+    left: 310px;
 }
 
 .button-dalej-dobrze {
