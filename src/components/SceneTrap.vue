@@ -26,8 +26,8 @@ function koniecPulapki() {
 </script>
 <template>
   <div class="pulapka1">
-    <h2 class="naglowek">ZASADZKA!</h2>
-    <h4 class="napis">Cofasz się o dwa pola.</h4>
+    <p class="naglowek">ZASADZKA!</p>
+    <p class="napis">Cofasz się o dwa pola.</p>
   </div>
   <button class="przycisk_pulapka1 anim1" @click="$emit('koniec-pulapka'); koniecPulapki()" role="button">dalej</button>
 </template>
@@ -65,7 +65,7 @@ function koniecPulapki() {
   font-weight: 400;
   font-family: "Proxima Nova", sans-serif;
   white-space: nowrap;
-  top: 110px;
+  top: 140px;
   left: 280px;
   height: 88px;
   width: 333px;

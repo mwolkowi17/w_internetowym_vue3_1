@@ -26,8 +26,7 @@ onMounted(() => {
       wykrzykniknikiem. Powodzenia!
     </p>
   </div>
-  <button class="dalej anim1" @click="$emit('koniec-instrukcja')" role="button" alt="przycisk"
-    aria-label="Przycisk dalej">dalej</button>
+  <button class="dalej anim1" @click="$emit('koniec-instrukcja')" role="button">dalej</button>
 
 </template>
 

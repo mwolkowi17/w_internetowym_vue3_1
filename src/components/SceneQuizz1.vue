@@ -194,15 +194,15 @@ function sprawdzOdpowiedz() {
   <button class="button-dalej" v-if="if_button_dalej" @click="sprawdzOdpowiedz()" role="button"
     alt="przycisk sprawdź">sprawdź odpowiedź</button>
   <div class="plansza-dobrze" v-if="if_odpowiedz_dobrze">
-    <h2 class="naglowek-after-quizz naglowek-dobrze">BRAWO!</h2>
-    <h4 class="napis-odpowiedz napis-dobrze">Prawidłowa odpowiedź.</h4>
+    <p class="naglowek-after-quizz naglowek-dobrze">BRAWO!</p>
+    <p class="napis-odpowiedz napis-dobrze">Prawidłowa odpowiedź.</p>
   </div>
   <button class="button-dalej-dobrze anim1" v-if="if_button_dalej_dobrze" @click="if_odpowiedz_dobrze = false,
     if_button_dalej_dobrze = false,
     $emit('koniec-quizz')" role="button">dalej</button>
   <div class="plansza-zle" v-if="if_odpowiedz_zle">
-    <h2 class="naglowek-after-quizz naglowek-zle">Źle!</h2>
-    <h4 class="napis-odpowiedz napis-zle">Błędna odpowiedź.</h4>
+    <p class="naglowek-after-quizz naglowek-zle">Źle!</p>
+    <p class="napis-odpowiedz napis-zle">Błędna odpowiedź.</p>
   </div>
   <button class="button-dalej-dobrze anim1" v-if="if_button_dalej_zle" @click="if_odpowiedz_zle = false,
     if_button_dalej_zle = false,
@@ -421,7 +421,6 @@ li {
   font-weight: 600;
   font-family: "Proxima Nova", sans-serif;
   top: 5px;
-
   height: 88px;
   width: 333px;
   position: absolute;
@@ -443,7 +442,7 @@ li {
   font-weight: 400;
   font-family: "Proxima Nova", sans-serif;
   white-space: nowrap;
-  top: 115px;
+  top: 145px;
 
   height: 88px;
   width: 333px;

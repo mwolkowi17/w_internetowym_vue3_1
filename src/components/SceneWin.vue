@@ -21,8 +21,8 @@ fanfary.play();
 
 <template>
     <div class="plansza-win">
-       <h2 class="naglowek">GRATULACJE!</h2>
-       <h4 class="napis">Udało ci się ukończyć grę.</h4>
+       <p class="naglowek">GRATULACJE!</p>
+       <p class="napis">Udało ci się ukończyć grę.</p>
     </div>
     <button class="gram-jeszcze-1 anim1" @click="$emit('jeszcze-raz')" role="img" alt="przycisk"
         aria-label="gram jeszcze raz">zagraj jeszcze raz</button>
@@ -64,7 +64,7 @@ color: rgb(255, 255, 255);
   font-weight: 400;
   font-family: "Proxima Nova", sans-serif;
   white-space: nowrap;
-  top: 290px;
+  top: 340px;
   left: 560px;
   height: 88px;
   width: 333px;

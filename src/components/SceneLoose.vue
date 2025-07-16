@@ -16,8 +16,8 @@ przegrana_sound.play();
 
 <template>
     <div class="plansza-lose">
-        <h2 class="naglowek">Niestety przegrałeś.</h2>
-        <h4 class="napis">Chcesz spróbować jeszcze raz?</h4>
+        <p class="naglowek">Niestety przegrałeś.</p>
+        <p class="napis">Chcesz spróbować jeszcze raz?</p>
     </div>
     <button class="gram-jeszcze-1 anim1" @click="$emit('jeszcze-raz')" role="button">zagraj jeszcze raz</button>
     <button class="zakoncz-gre anim1" @click="$emit('koniec-gry')" role="button">zakończ grę</button>
@@ -57,7 +57,7 @@ przegrana_sound.play();
     font-weight: 400;
     font-family: "Proxima Nova", sans-serif;
     white-space: nowrap;
-    top: 290px;
+    top: 340px;
     left: 450px;
     height: 88px;
     width: 333px;

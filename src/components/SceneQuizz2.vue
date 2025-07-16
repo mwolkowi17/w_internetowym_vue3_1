@@ -12,7 +12,7 @@ const props = defineProps({
 });
 
 onMounted(() => {
-    const elementToFocus = document.querySelector(".pole1")
+    const elementToFocus = document.querySelector(".pojedyncza-odpowiedz")
     if (elementToFocus) {
         elementToFocus.focus();
     }
@@ -179,6 +179,70 @@ function sprawdzOdpowiedz() {
                         is_krzyzyk3 = false,
                         if_button_dalej = true,
                         zaznaczenie1()">
+                
+                    <span class="krzyzykA" v-if="is_krzyzyk1" role="img" alt="zaznaczenie odpowiedzi"
+                        aria-label="zaznaczona odpowiedź"></span>
+                    <span class="pole-zazn  anim1" aria-label="zaznacz odpowiedź 1"></span>
+                
+                <span class="odpowiedz anim1"
+                    v-html="quizz_assets_data.pokaz_zadanie_2(props.miejsceNaPlanszy).odpowiedz_text[nr_zestawu][0]">
+                </span>
+            </div>
+        </li>
+        <li>
+            <div class="pojedyncza-odpowiedz" role="checkbox" tabindex="0" :aria-checked="zaznaczenieOdpowiedzi2"
+                @click="is_krzyzyk2 = true,
+                    is_krzyzyk1 = false,
+                    is_krzyzyk3 = false,
+                    if_button_dalej = true,
+                    zaznaczenie2()" @keydown.enter="is_krzyzyk2 = true,
+                        is_krzyzyk1 = false,
+                        is_krzyzyk3 = false,
+                        if_button_dalej = true,
+                        zaznaczenie2()">
+                <span class="krzyzykA" role="img" v-if="is_krzyzyk2" alt="zaznaczenie odpowiedzi"
+                        aria-label="zaznaczona odpowiedź"></span>        
+                <span class="pole-zazn anim1" aria-label="zaznacz odpowiedź 2"></span>
+                  
+                <span class="odpowiedz anim1"
+                    v-html="quizz_assets_data.pokaz_zadanie_2(props.miejsceNaPlanszy).odpowiedz_text[nr_zestawu][1]">
+                </span>
+            </div>
+        </li>
+        <li>
+            <div class="pojedyncza-odpowiedz" role="checkbox" tabindex="0" :aria-checked="zaznaczenieOdpowiedzi3"
+                @click="is_krzyzyk3 = true,
+                    is_krzyzyk1 = false,
+                    is_krzyzyk2 = false,
+                    if_button_dalej = true,
+                    zaznaczenie3()" @keydown.enter="is_krzyzyk3 = true,
+                        is_krzyzyk1 = false,
+                        is_krzyzyk2 = false,
+                        if_button_dalej = true,
+                        zaznaczenie3()">
+                 <span class="krzyzykA" v-if="is_krzyzyk3" role="img" alt="zaznaczenie odpowiedzi"
+                        aria-label="zaznaczona odpowiedź"></span>        
+                <span class="pole-zazn anim1" aria-label="zaznacz odpowiedź 3"></span>
+                 
+                <span class="odpowiedz anim1"
+                    v-html="quizz_assets_data.pokaz_zadanie_2(props.miejsceNaPlanszy).odpowiedz_text[nr_zestawu][2]">
+                </span>
+            </div>
+        </li>
+    </ul>
+
+    <!-- <ul class="lista-odpowiedzi" role="presentation">
+        <li>
+            <div class="pojedyncza-odpowiedz" role="checkbox" tabindex="0" :aria-checked="zaznaczenieOdpowiedzi1"
+                @click="is_krzyzyk1 = true,
+                    is_krzyzyk2 = false,
+                    is_krzyzyk3 = false,
+                    if_button_dalej = true,
+                    zaznaczenie1()" @keydown.enter="is_krzyzyk1 = true,
+                        is_krzyzyk2 = false,
+                        is_krzyzyk3 = false,
+                        if_button_dalej = true,
+                        zaznaczenie1()">
                 <span class="krzyzyk"
                     :class="{ 'krzyzyk1': is_krzyzyk1, 'krzyzyk2': is_krzyzyk2, 'krzyzyk3': is_krzyzyk3 }" role="img"
                     alt="zaznaczenie odpowiedzi" aria-label="zaznaczona odpowiedź"></span>
@@ -225,57 +289,20 @@ function sprawdzOdpowiedz() {
                 </span>
             </div>
         </li>
-
-
-
-
-
-    </ul>
-    <!-- <div class="krzyzyk" :class="{ 'krzyzyk1': is_krzyzyk1, 'krzyzyk2': is_krzyzyk2, 'krzyzyk3': is_krzyzyk3 }"
-        role="img" alt="zaznaczenie odpowiedzi" aria-label="zaznaczona odpowiedź"></div>
-    <button class="pole-zazn pole1 anim1" @click="is_krzyzyk1 = true,
-        is_krzyzyk2 = false,
-        is_krzyzyk3 = false,
-        if_button_dalej = true,
-        zaznaczenie1()" role="img" alt="pole zaznaczenia" aria-label="zaznacz odpowiedź 1"></button>
-
-  
-    <p class="odpowiedz odpowiedz1 anim1"
-        v-html="quizz_assets_data.pokaz_zadanie_2(props.miejsceNaPlanszy).odpowiedz_text[nr_zestawu][0]"></p>
-    <button class="pole-zazn pole2 anim1" @click="is_krzyzyk2 = true,
-        is_krzyzyk1 = false,
-        is_krzyzyk3 = false,
-        if_button_dalej = true,
-        zaznaczenie2()
-        " role="img" alt="pole zaznaczenia" aria-label="zaznacz odpowiedź 2"></button>
-
-   
-    <p class="odpowiedz odpowiedz2 anim1"
-        v-html="quizz_assets_data.pokaz_zadanie_2(props.miejsceNaPlanszy).odpowiedz_text[nr_zestawu][1]">
-    </p>
-    <button class="pole-zazn pole3 anim1" @click="is_krzyzyk3 = true,
-        is_krzyzyk1 = false,
-        is_krzyzyk2 = false,
-        if_button_dalej = true,
-        zaznaczenie3()
-        " role="img" alt="przycisk" aria-label="zaznacz odpowiedź 3"></button>
-
-   
-    <p class="odpowiedz odpowiedz3 anim1"
-        v-html="quizz_assets_data.pokaz_zadanie_2(props.miejsceNaPlanszy).odpowiedz_text[nr_zestawu][2]"></p> -->
+    </ul> -->
 
     <button class="button-dalej" v-if="if_button_dalej" @click="sprawdzOdpowiedz()" role="button">sprawdź
         odpowiedź</button>
     <div class="plansza-dobrze" v-if="if_odpowiedz_dobrze">
-        <h2 class="naglowek-after-quizz naglowek-dobrze">BRAWO!</h2>
-        <h4 class="napis-odpowiedz napis-dobrze">Prawidłowa odpowiedź.</h4>
+        <p class="naglowek-after-quizz naglowek-dobrze">BRAWO!</p>
+        <p class="napis-odpowiedz napis-dobrze">Prawidłowa odpowiedź.</p>
     </div>
     <button class="button-dalej-dobrze anim1" v-if="if_button_dalej_dobrze" @click="if_odpowiedz_dobrze = false,
         if_button_dalej_dobrze = false,
         $emit('koniec-quizz')" role="button">dalej</button>
     <div class="plansza-zle" v-if="if_odpowiedz_zle">
-        <h2 class="naglowek-after-quizz naglowek-zle">Źle!</h2>
-        <h4 class="napis-odpowiedz napis-zle">Błędna odpowiedź.</h4>
+        <p class="naglowek-after-quizz naglowek-zle">Źle!</p>
+        <p class="napis-odpowiedz napis-zle">Błędna odpowiedź.</p>
     </div>
     <button class="button-dalej-dobrze anim1" v-if="if_button_dalej_zle" @click="if_odpowiedz_zle = false,
         if_button_dalej_zle = false,
@@ -423,7 +450,18 @@ li {
     cursor: pointer;
 }
 
+.krzyzykA {
+    background-image: url("../assets/krzyzyk1.png");
+    background-size: 73px 73px;
+    background-repeat: no-repeat;
+    height: 73px;
+    width: 73px;
+    left: 62px;
+    position: absolute;
+    z-index: 1;
+}
 
+/* nieużywane klasy do usunięcia -  początek*/
 .krzyzyk {
     background-image: url("../assets/krzyzyk1.png");
     background-size: 73px 73px;
@@ -452,6 +490,8 @@ li {
     left: 62px;
     visibility: visible;
 }
+
+/* nieużywane klasy do usunięcia - koniec*/
 
 .odpowiedz {
     color: rgb(29, 56, 80);
@@ -557,7 +597,7 @@ li {
     font-weight: 400;
     font-family: "Proxima Nova", sans-serif;
     white-space: nowrap;
-    top: 115px;
+    top: 145px;
 
     height: 88px;
     width: 333px;

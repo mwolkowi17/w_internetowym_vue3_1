@@ -13,13 +13,13 @@ import SceneEndLevelOne from './SceneEndLevelOne.vue';
 import { images } from '../lib/image-list';
 import { preloadImages } from '../lib/preloader';
 
-const if_plansza_poczatkowa = ref(false)
+const if_plansza_poczatkowa = ref(true)
 const if_instrukcja = ref(false)
 const if_end_scene_level_one = ref(false)
 const if_level_one_choise = ref(false)
 const if_level_two_choise = ref(false)
 const if_main1 = ref(false)
-const if_main2 = ref(true)
+const if_main2 = ref(false)
 const if_win = ref(false)
 const if_loose = ref(false)
 const if_loose_after_level_one = ref(false)
