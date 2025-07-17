@@ -231,66 +231,6 @@ function sprawdzOdpowiedz() {
         </li>
     </ul>
 
-    <!-- <ul class="lista-odpowiedzi" role="presentation">
-        <li>
-            <div class="pojedyncza-odpowiedz" role="checkbox" tabindex="0" :aria-checked="zaznaczenieOdpowiedzi1"
-                @click="is_krzyzyk1 = true,
-                    is_krzyzyk2 = false,
-                    is_krzyzyk3 = false,
-                    if_button_dalej = true,
-                    zaznaczenie1()" @keydown.enter="is_krzyzyk1 = true,
-                        is_krzyzyk2 = false,
-                        is_krzyzyk3 = false,
-                        if_button_dalej = true,
-                        zaznaczenie1()">
-                <span class="krzyzyk"
-                    :class="{ 'krzyzyk1': is_krzyzyk1, 'krzyzyk2': is_krzyzyk2, 'krzyzyk3': is_krzyzyk3 }" role="img"
-                    alt="zaznaczenie odpowiedzi" aria-label="zaznaczona odpowiedź"></span>
-                <span class="pole-zazn  anim1" 
-                    aria-label="zaznacz odpowiedź 1"></span>
-                <span class="odpowiedz anim1"
-                    v-html="quizz_assets_data.pokaz_zadanie_2(props.miejsceNaPlanszy).odpowiedz_text[nr_zestawu][0]">
-                </span>
-            </div>
-        </li>
-        <li>
-            <div class="pojedyncza-odpowiedz" role="checkbox" tabindex="0" :aria-checked="zaznaczenieOdpowiedzi2"
-                @click="is_krzyzyk2 = true,
-                    is_krzyzyk1 = false,
-                    is_krzyzyk3 = false,
-                    if_button_dalej = true,
-                    zaznaczenie2()" @keydown.enter="is_krzyzyk2 = true,
-                        is_krzyzyk1 = false,
-                        is_krzyzyk3 = false,
-                        if_button_dalej = true,
-                        zaznaczenie2()">
-                <span class="pole-zazn anim1" aria-label="zaznacz odpowiedź 2"></span>
-
-                <span class="odpowiedz anim1"
-                    v-html="quizz_assets_data.pokaz_zadanie_2(props.miejsceNaPlanszy).odpowiedz_text[nr_zestawu][1]">
-                </span>
-            </div>
-        </li>
-        <li>
-            <div class="pojedyncza-odpowiedz" role="checkbox" tabindex="0" :aria-checked="zaznaczenieOdpowiedzi3"
-                @click="is_krzyzyk3 = true,
-                    is_krzyzyk1 = false,
-                    is_krzyzyk2 = false,
-                    if_button_dalej = true,
-                    zaznaczenie3()" @keydown.enter="is_krzyzyk3 = true,
-                        is_krzyzyk1 = false,
-                        is_krzyzyk2 = false,
-                        if_button_dalej = true,
-                        zaznaczenie3()">
-                <span class="pole-zazn anim1" aria-label="zaznacz odpowiedź 3"></span>
-
-                <span class="odpowiedz anim1"
-                    v-html="quizz_assets_data.pokaz_zadanie_2(props.miejsceNaPlanszy).odpowiedz_text[nr_zestawu][2]">
-                </span>
-            </div>
-        </li>
-    </ul> -->
-
     <button class="button-dalej" v-if="if_button_dalej" @click="sprawdzOdpowiedz()" role="button">sprawdź
         odpowiedź</button>
     <div class="plansza-dobrze" v-if="if_odpowiedz_dobrze">

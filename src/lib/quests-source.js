@@ -101,7 +101,7 @@ export class Quests {
           ["węża", "małpa", 2],
         ],
         odpowiedz: 1,
-        tresc: "W Polsce symbol" + "\xa0  \xa0 \xa0" + " oznacza:",
+        tresc: "W Polsce symbol mała litera a wpisana w okrąg oznacza:",
       },
       {
         id: 13,

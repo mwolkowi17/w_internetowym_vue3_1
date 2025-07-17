@@ -141,7 +141,8 @@ function sprawdzOdpowiedz() {
     role="img" alt="tło" aria-label="pytanie"></div>
   <p class="pytanie1">{{ quizz_assets_data.pokaz_zadanie_2(props.miejsceNaPlanszy).tresc }}</p>
 
-  <ul class="lista-odpowiedzi" role="presentation">
+  <!-- <ul class="lista-odpowiedzi" role="presentation"> -->
+  <ul class="lista-odpowiedzi" role="list">
     <li>
       <!-- <div class="pojedyncza-odpowiedz" role="checkbox" tabindex="0" :aria-checked={zaznaczenieOdpowiedzi1}> -->
       <div class="pojedyncza-odpowiedz" role="checkbox" tabindex="0" :aria-checked="zaznaczenieOdpowiedzi1" @click="is_krzyzyk1 = true,
@@ -176,21 +177,7 @@ function sprawdzOdpowiedz() {
       </div>
     </li>
   </ul>
-  <!-- <div class="krzyzyk" :class="{ 'krzyzyk1': is_krzyzyk1, 'krzyzyk2': is_krzyzyk2 }" role="img"
-    alt="zaznaczenie odpowiedzi" aria-label="zaznaczona odpowiedź"></div>
-  <button class="pole-zazn pole1 anim1" @click="is_krzyzyk1 = true,
-    is_krzyzyk2 = false,
-    if_button_dalej = true,
-    zaznaczenie1()" role="img" alt="pole zaznaczenia" aria-label="zaznacz odpowiedź 1"></button>
-
-  <p class="odpowiedz odpowiedz1 anim1">{{
-    quizz_assets_data.pokaz_zadanie_2(props.miejsceNaPlanszy).odpowiedz_text[nr_zestawu][0] }}</p>
-  <button class="pole-zazn pole2 anim1" @click="is_krzyzyk2 = true,
-    is_krzyzyk1 = false,
-    if_button_dalej = true,
-    zaznaczenie2()" role="img" alt="pole zaznaczenia" aria-label="zaznacz odpowiedź 2"></button>
-  <p class="odpowiedz odpowiedz2 anim1">{{
-    quizz_assets_data.pokaz_zadanie_2(props.miejsceNaPlanszy).odpowiedz_text[nr_zestawu][1] }}</p> -->
+ 
   <button class="button-dalej" v-if="if_button_dalej" @click="sprawdzOdpowiedz()" role="button"
     alt="przycisk sprawdź">sprawdź odpowiedź</button>
   <div class="plansza-dobrze" v-if="if_odpowiedz_dobrze">

@@ -152,7 +152,8 @@ function kostka_click() {
 
             i++; //  increment the counter
 
-            if (i <= wynik_rzutu && ruch_lokalny <= 15) {
+            // if (i <= wynik_rzutu && ruch_lokalny <= 15) {
+            if (i <= wynik_rzutu && ruch_lokalny < 15) {
                 myLoopPionek(arg_A, arg_B, arg_C); //  ..  again which will trigger another                         
             } else {
                 dodanie_krokow();
