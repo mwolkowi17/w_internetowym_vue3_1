@@ -167,7 +167,7 @@ function sprawdzOdpowiedz() {
         role="img" alt="tło" aria-label="pytanie"></div>
     <!-- <div class="planszaQuizz1 " :class="eksp1[9]"></div> -->
     <p class="pytanie1">{{ quizz_assets_data.pokaz_zadanie_2(props.miejsceNaPlanszy).tresc }}</p>
-    <ul class="lista-odpowiedzi" role="presentation">
+    <ul class="lista-odpowiedzi" role="list">
         <li>
             <div class="pojedyncza-odpowiedz" role="checkbox" tabindex="0" :aria-checked="zaznaczenieOdpowiedzi1"
                 @click="is_krzyzyk1 = true,
@@ -329,7 +329,7 @@ li {
 .lista-odpowiedzi {
     position: absolute;
     left: 180px;
-    top: 455px;
+    top: 435px;
     list-style: none;
 }
 
@@ -439,7 +439,8 @@ li {
     font-style: bold;
     font-weight: 700;
     font-family: "Proxima Nova", sans-serif;
-    white-space: nowrap;
+
+    width: 1000px;
     /* position: absolute; */
 
 }
@@ -468,7 +469,7 @@ li {
     font-family: "Proxima Nova", sans-serif;
     background-size: 394px 87px;
     background-repeat: no-repeat;
-    top: 835px;
+    top: 838px;
     left: 300px;
     height: 87px;
     width: 394px;

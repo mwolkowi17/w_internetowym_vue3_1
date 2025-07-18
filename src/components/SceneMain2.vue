@@ -27,7 +27,7 @@ const postac1 = ref("postać")
 //pozycja startowa gracza nr 1
 const krok_gracz1_na_planszy = ref(0);
 //roboczo do edycji quizów
-//const krok_gracz1_na_planszy = ref(4);
+//const krok_gracz1_na_planszy = ref(15);
 
 //zdefinowanie pozycji (mapy wszystkich pozycji) gracza nr 1
 const pozycje_pionka_gracza1 = new PawnMaps().pionek_gracza1;
@@ -153,7 +153,7 @@ function kostka_click() {
             i++; //  increment the counter
 
             // if (i <= wynik_rzutu && ruch_lokalny <= 15) {
-            if (i <= wynik_rzutu && ruch_lokalny < 15) {
+            if (i <= wynik_rzutu && ruch_lokalny <= 15) {
                 myLoopPionek(arg_A, arg_B, arg_C); //  ..  again which will trigger another                         
             } else {
                 dodanie_krokow();
