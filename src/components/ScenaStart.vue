@@ -1,7 +1,11 @@
 <script setup>
 import { ref } from 'vue'
 
-const emit = defineEmits(['koniec-planszy'])
+const emit = defineEmits(['koniec-planszy','instrukcja-focus']) //dodanie emitera eventu z klawiatury
+
+const props = defineProps({
+  ifButtonOnFocus: Boolean
+})
 const stageParent = ref(null)
 
 //nieużywana funkcja fullscreen - to obsługuje platforma
@@ -23,7 +27,7 @@ function openFullscreen() {
 <template>
   <div ref="stageParent" class="tlo" role="img" alt="plansza startu gry" aria-label="W internetowym labiryncie">
   </div>
-  <button class="start" @click="$emit('koniec-planszy')" role="button">START</button>
+  <button class="start" @click="$emit('koniec-planszy')" @keydown.enter="$emit('instrukcja-focus')" role="button">START</button>
 </template>
 
 <style>
@@ -63,7 +67,7 @@ function openFullscreen() {
 }
 
 .start:focus {
-  outline: 8px solid #08e926;
+  outline: 5px solid #08e926;
   /* outline: 8px solid #9a009e; */
   /* outline: thick double #08e926; */
 }

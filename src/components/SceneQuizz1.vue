@@ -8,18 +8,21 @@ defineOptions({
 
 const props = defineProps({
   miejsceNaPlanszy: Number,
-  msg: String
+  msg: String,
+  ifButtonOnFocusQuizz1: Boolean
 });
+
+const ifButtonKoniecQuizzuOnFocus = ref(false)
 
 onMounted(() => {
   const elementToFocus = document.querySelector(".pojedyncza-odpowiedz")
-  if (elementToFocus) {
+  if (elementToFocus && props.ifButtonOnFocusQuizz1 === true) {
     elementToFocus.focus();
   }
 
 })
 
-const emit = defineEmits(['koniec-quizz',
+const emit = defineEmits(['koniec-quizz', 'koniec-quizz-focus',
   'odejmij-szanse']);
 
 let nr_zestawu = Math.floor(Math.random() * 2);
@@ -111,9 +114,9 @@ function sprawdzOdpowiedz() {
         resolve(document.querySelector(".button-dalej-dobrze"))
       }, 300);
     })
-
-    buttonVis.then((res) => { res.focus() })
-
+    if (ifButtonKoniecQuizzuOnFocus.value === true) {
+      buttonVis.then((res) => { res.focus() })
+    }
   } else {
     console.log("Odpowiedź zła!!!!");
     if_odpowiedz_zle.value = true;
@@ -130,8 +133,9 @@ function sprawdzOdpowiedz() {
         resolve(document.querySelector(".button-dalej-dobrze"))
       }, 300);
     })
-
-    buttonVis2.then((res) => { res.focus() })
+    if (ifButtonKoniecQuizzuOnFocus.value === true) {
+      buttonVis2.then((res) => { res.focus() })
+    }
   }
 }
 
@@ -146,14 +150,14 @@ function sprawdzOdpowiedz() {
     <li>
       <!-- <div class="pojedyncza-odpowiedz" role="checkbox" tabindex="0" :aria-checked={zaznaczenieOdpowiedzi1}> -->
       <div class="pojedyncza-odpowiedz" role="checkbox" tabindex="0" :aria-checked="zaznaczenieOdpowiedzi1" @click="is_krzyzyk1 = true,
+        is_krzyzyk2 = false,
+        if_button_dalej = true,
+        zaznaczenie1()" @keydown.enter="is_krzyzyk1 = true,
           is_krzyzyk2 = false,
           if_button_dalej = true,
-          zaznaczenie1()" @keydown.enter="is_krzyzyk1 = true,
-          is_krzyzyk2 = false,
-          if_button_dalej = true,
-          zaznaczenie1()" >
-        <span class="krzyzyk" :class="{ 'krzyzyk1': is_krzyzyk1, 'krzyzyk2': is_krzyzyk2 }" 
-          alt="zaznaczenie odpowiedzi" ></span>
+          zaznaczenie1()">
+        <span class="krzyzyk" :class="{ 'krzyzyk1': is_krzyzyk1, 'krzyzyk2': is_krzyzyk2 }"
+          alt="zaznaczenie odpowiedzi"></span>
         <span class="pole-zazn anim1" aria-label="zaznacz odpowiedź 1"></span>
 
         <span class="odpowiedz anim1">{{
@@ -164,9 +168,9 @@ function sprawdzOdpowiedz() {
     <li>
       <!-- <div class="pojedyncza-odpowiedz" role="checkbox" tabindex="0" :aria-checked={zaznaczenieOdpowiedzi1}> -->
       <div class="pojedyncza-odpowiedz" role="checkbox" tabindex="0" :aria-checked="zaznaczenieOdpowiedzi2" @click="is_krzyzyk2 = true,
-          is_krzyzyk1 = false,
-          if_button_dalej = true,
-          zaznaczenie2()" @keydown.enter="is_krzyzyk2 = true,
+        is_krzyzyk1 = false,
+        if_button_dalej = true,
+        zaznaczenie2()" @keydown.enter="is_krzyzyk2 = true,
           is_krzyzyk1 = false,
           if_button_dalej = true,
           zaznaczenie2()">
@@ -177,24 +181,31 @@ function sprawdzOdpowiedz() {
       </div>
     </li>
   </ul>
- 
-  <button class="button-dalej" v-if="if_button_dalej" @click="sprawdzOdpowiedz()" role="button"
-    alt="przycisk sprawdź">sprawdź odpowiedź</button>
+
+  <button class="button-dalej" v-if="if_button_dalej" @click="sprawdzOdpowiedz()"
+    @keydown.enter="ifButtonKoniecQuizzuOnFocus = true; sprawdzOdpowiedz()" role="button" alt="przycisk sprawdź">sprawdź
+    odpowiedź</button>
   <div class="plansza-dobrze" v-if="if_odpowiedz_dobrze">
     <p class="naglowek-after-quizz naglowek-dobrze">BRAWO!</p>
     <p class="napis-odpowiedz napis-dobrze">Prawidłowa odpowiedź.</p>
   </div>
   <button class="button-dalej-dobrze anim1" v-if="if_button_dalej_dobrze" @click="if_odpowiedz_dobrze = false,
     if_button_dalej_dobrze = false,
-    $emit('koniec-quizz')" role="button">dalej</button>
+    $emit('koniec-quizz')" @keydown.enter="
+      if_odpowiedz_dobrze = false,
+      if_button_dalej_dobrze = false,
+      $emit('koniec-quizz-focus')" role="button">dalej</button>
   <div class="plansza-zle" v-if="if_odpowiedz_zle">
     <p class="naglowek-after-quizz naglowek-zle">Źle!</p>
     <p class="napis-odpowiedz napis-zle">Błędna odpowiedź.</p>
   </div>
   <button class="button-dalej-dobrze anim1" v-if="if_button_dalej_zle" @click="if_odpowiedz_zle = false,
     if_button_dalej_zle = false,
-    $emit('koniec-quizz')" role="button">dalej</button>
-
+    $emit('koniec-quizz')" @keydown.enter="
+      if_odpowiedz_zle = false,
+      if_button_dalej_zle = false,
+      $emit('koniec-quizz-focus')
+      " role="button">dalej</button>
 
 </template>
 <style scoped>
@@ -288,7 +299,7 @@ li {
 }
 
 .pojedyncza-odpowiedz:focus {
-  outline: 8px solid #9a009e !important;
+  outline: 5px solid #9a009e !important;
 }
 
 .pole-zazn {
@@ -311,7 +322,7 @@ li {
 
 .pole-zazn:focus {
   /* outline: thick double #08e926 !important; */
-  outline: 8px solid #9a009e !important;
+  outline: 5px solid #9a009e !important;
 }
 
 
@@ -376,7 +387,7 @@ li {
 .button-dalej:focus {
   /* border: 4px solid #08e926; */
   /* outline: thick double #08e926 !important; */
-  outline: 8px solid #9a009e !important;
+  outline: 5px solid #9a009e !important;
 }
 
 .plansza-dobrze {
@@ -470,7 +481,7 @@ li {
 .button-dalej-dobrze:focus {
   /* border: 4px solid #08e926; */
   /* outline: thick double #08e926 !important; */
-  outline: 8px solid #08e926 !important;
+  outline: 5px solid #08e926 !important;
 }
 
 /* The animation code */

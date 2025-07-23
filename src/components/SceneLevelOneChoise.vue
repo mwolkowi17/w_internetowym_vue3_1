@@ -1,10 +1,14 @@
 <script setup>
 import { onMounted } from 'vue';
-defineEmits(['wybor-levelu1']);
+defineEmits(['wybor-levelu1','wybor-levelu1-focus']);
+
+const props = defineProps({
+ifButtonOnFocusLevelOne: Boolean
+});
 
 onMounted(() => {
     const elementToFocus = document.querySelector(".level-one-button")
-    if (elementToFocus) {
+    if (elementToFocus&&props.ifButtonOnFocusLevelOne===true) {
         elementToFocus.focus();
     }
 
@@ -14,8 +18,8 @@ onMounted(() => {
 <template>
     <div class="tlo-level1" role="img" alt="tło" aria-label="Wybór poziomu">
     </div>
-    <button class="level-one-button" @click="$emit('wybor-levelu1')" role="button" 
-         autofocus>poziom 1</button>
+    <button class="level-one-button" @click="$emit('wybor-levelu1')" @keydown.enter="$emit('wybor-levelu1-focus')" role="button" 
+         >poziom 1</button>
     <button class="level-two-button" role="img" aria-label="poziom 2 niedostępny" aria-disabled ="true" disabled>poziom 2</button>
 
 </template>
@@ -52,7 +56,7 @@ onMounted(() => {
 }
 
 .level-one-button:focus {
-    outline: 8px solid #08e926;
+    outline: 5px solid #08e926;
 }
 
 .level-two-button {

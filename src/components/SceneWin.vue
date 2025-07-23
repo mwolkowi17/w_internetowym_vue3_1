@@ -5,14 +5,17 @@ defineOptions({
     inheritAttrs: false
 })
 
-defineEmits(['jeszcze-raz', 'koniec-gry']);
+const props = defineProps({
+ ifButtonOnFocusSceneWin: Boolean
+});
+
+defineEmits(['jeszcze-raz','jeszcze-raz-focus', 'koniec-gry', 'koniec-gry-focus']);
 
 onMounted(() => {
     const elementToFocus = document.querySelector(".gram-jeszcze-1")
-    if (elementToFocus) {
+    if (elementToFocus&&props.ifButtonOnFocusSceneWin) {
         elementToFocus.focus();
     }
-
 })
 
 const fanfary = new Audio(new URL('../assets/fanfary.mp3', import.meta.url).href);
@@ -24,9 +27,9 @@ fanfary.play();
        <p class="naglowek">GRATULACJE!</p>
        <p class="napis">Udało ci się ukończyć grę.</p>
     </div>
-    <button class="gram-jeszcze-1 anim1" @click="$emit('jeszcze-raz')" role="img" alt="przycisk"
+    <button class="gram-jeszcze-1 anim1" @click="$emit('jeszcze-raz')" @keydown.enter="$emit('jeszcze-raz-focus')" role="img" alt="przycisk"
         aria-label="gram jeszcze raz">zagraj jeszcze raz</button>
-    <button class="zakoncz-gre anim1" @click="$emit('koniec-gry')" role="img" alt="przycisk"
+    <button class="zakoncz-gre anim1" @click="$emit('koniec-gry')" @keydown.enter="$emit('koniec-gry-focus')" role="img" alt="przycisk"
         aria-label="zakończ grę">zakończ grę</button>
 </template>
 
@@ -96,7 +99,7 @@ color: rgb(255, 255, 255);
 
 .gram-jeszcze-1:focus {
     /* outline: thick double #08e926; */
-    outline: 8px solid #08e926;
+    outline: 5px solid #08e926;
 }
 
 .zakoncz-gre {
@@ -123,7 +126,7 @@ color: rgb(255, 255, 255);
 
 .zakoncz-gre:focus {
     /* outline: thick double #08e926; */
-    outline: 8px solid #08e926;
+    outline: 5px solid #08e926;
 }
 
 /* The animation code */

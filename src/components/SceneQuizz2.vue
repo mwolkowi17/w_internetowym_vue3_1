@@ -8,18 +8,21 @@ defineOptions({
 
 const props = defineProps({
     miejsceNaPlanszy: Number,
-    msg: String
+    msg: String,
+    ifButtonOnFocusQuizz2: Boolean
 });
+
+const ifButtonKoniecQuizzuOnFocus = ref(false)
 
 onMounted(() => {
     const elementToFocus = document.querySelector(".pojedyncza-odpowiedz")
-    if (elementToFocus) {
+    if (elementToFocus && props.ifButtonOnFocusQuizz2) {
         elementToFocus.focus();
     }
 
 })
 
-const emit = defineEmits(['koniec-quizz',
+const emit = defineEmits(['koniec-quizz', 'koniec-quizz-focus',
     'odejmij-szanse']);
 
 let nr_zestawu = Math.floor(Math.random() * 3);
@@ -137,7 +140,9 @@ function sprawdzOdpowiedz() {
                 resolve(document.querySelector(".button-dalej-dobrze"))
             }, 300);
         })
-        buttonVis.then((res) => { res.focus() })
+        if (ifButtonKoniecQuizzuOnFocus.value === true) {
+            buttonVis.then((res) => { res.focus() })
+        }
 
     } else {
         console.log("Odpowiedź zła!!!!");
@@ -156,8 +161,9 @@ function sprawdzOdpowiedz() {
                 resolve(document.querySelector(".button-dalej-dobrze"))
             }, 300);
         })
-
-        buttonVis2.then((res) => { res.focus() })
+        if (ifButtonKoniecQuizzuOnFocus.value === true) {
+            buttonVis2.then((res) => { res.focus() })
+        }
     }
 }
 
@@ -179,11 +185,11 @@ function sprawdzOdpowiedz() {
                         is_krzyzyk3 = false,
                         if_button_dalej = true,
                         zaznaczenie1()">
-                
-                    <span class="krzyzykA" v-if="is_krzyzyk1" role="img" alt="zaznaczenie odpowiedzi"
-                        aria-label="zaznaczona odpowiedź"></span>
-                    <span class="pole-zazn  anim1" aria-label="zaznacz odpowiedź 1"></span>
-                
+
+                <span class="krzyzykA" v-if="is_krzyzyk1" role="img" alt="zaznaczenie odpowiedzi"
+                    aria-label="zaznaczona odpowiedź"></span>
+                <span class="pole-zazn  anim1" aria-label="zaznacz odpowiedź 1"></span>
+
                 <span class="odpowiedz anim1"
                     v-html="quizz_assets_data.pokaz_zadanie_2(props.miejsceNaPlanszy).odpowiedz_text[nr_zestawu][0]">
                 </span>
@@ -201,9 +207,9 @@ function sprawdzOdpowiedz() {
                         if_button_dalej = true,
                         zaznaczenie2()">
                 <span class="krzyzykA" role="img" v-if="is_krzyzyk2" alt="zaznaczenie odpowiedzi"
-                        aria-label="zaznaczona odpowiedź"></span>        
+                    aria-label="zaznaczona odpowiedź"></span>
                 <span class="pole-zazn anim1" aria-label="zaznacz odpowiedź 2"></span>
-                  
+
                 <span class="odpowiedz anim1"
                     v-html="quizz_assets_data.pokaz_zadanie_2(props.miejsceNaPlanszy).odpowiedz_text[nr_zestawu][1]">
                 </span>
@@ -220,10 +226,10 @@ function sprawdzOdpowiedz() {
                         is_krzyzyk2 = false,
                         if_button_dalej = true,
                         zaznaczenie3()">
-                 <span class="krzyzykA" v-if="is_krzyzyk3" role="img" alt="zaznaczenie odpowiedzi"
-                        aria-label="zaznaczona odpowiedź"></span>        
+                <span class="krzyzykA" v-if="is_krzyzyk3" role="img" alt="zaznaczenie odpowiedzi"
+                    aria-label="zaznaczona odpowiedź"></span>
                 <span class="pole-zazn anim1" aria-label="zaznacz odpowiedź 3"></span>
-                 
+
                 <span class="odpowiedz anim1"
                     v-html="quizz_assets_data.pokaz_zadanie_2(props.miejsceNaPlanszy).odpowiedz_text[nr_zestawu][2]">
                 </span>
@@ -231,7 +237,8 @@ function sprawdzOdpowiedz() {
         </li>
     </ul>
 
-    <button class="button-dalej" v-if="if_button_dalej" @click="sprawdzOdpowiedz()" role="button">sprawdź
+    <button class="button-dalej" v-if="if_button_dalej" @click="sprawdzOdpowiedz()"
+        @keydown.enter="ifButtonKoniecQuizzuOnFocus = true; sprawdzOdpowiedz" role="button">sprawdź
         odpowiedź</button>
     <div class="plansza-dobrze" v-if="if_odpowiedz_dobrze">
         <p class="naglowek-after-quizz naglowek-dobrze">BRAWO!</p>
@@ -239,14 +246,16 @@ function sprawdzOdpowiedz() {
     </div>
     <button class="button-dalej-dobrze anim1" v-if="if_button_dalej_dobrze" @click="if_odpowiedz_dobrze = false,
         if_button_dalej_dobrze = false,
-        $emit('koniec-quizz')" role="button">dalej</button>
+        $emit('koniec-quizz')" @keydown.enter="if_odpowiedz_dobrze = false,
+        if_button_dalej_dobrze = false, $emit('koniec-quizz-focus')"  role="button">dalej</button>
     <div class="plansza-zle" v-if="if_odpowiedz_zle">
         <p class="naglowek-after-quizz naglowek-zle">Źle!</p>
         <p class="napis-odpowiedz napis-zle">Błędna odpowiedź.</p>
     </div>
     <button class="button-dalej-dobrze anim1" v-if="if_button_dalej_zle" @click="if_odpowiedz_zle = false,
         if_button_dalej_zle = false,
-        $emit('koniec-quizz')" role="button">dalej</button>
+        $emit('koniec-quizz')" @keydown.enter="if_odpowiedz_dobrze = false,
+        if_button_dalej_dobrze = false, $emit('koniec-quizz-focus')" role="button">dalej</button>
 
 </template>
 
@@ -340,7 +349,7 @@ li {
 }
 
 .pojedyncza-odpowiedz:focus {
-    outline: 8px solid #9a009e !important;
+    outline: 5px solid #9a009e !important;
 }
 
 .pole-zazn {
@@ -360,7 +369,7 @@ li {
 
 .pole-zazn:focus {
     /* outline: thick double #08e926 !important; */
-    outline: 8px solid #9a009e !important;
+    outline: 5px solid #9a009e !important;
 }
 
 .pole1 {
@@ -484,7 +493,7 @@ li {
 .button-dalej:focus {
 
     /* outline: thick double #08e926 !important; */
-    outline: 8px solid #9a009e !important;
+    outline: 5px solid #9a009e !important;
 }
 
 .plansza-dobrze {
@@ -578,7 +587,7 @@ li {
 
 .button-dalej-dobrze:focus {
     /* outline: thick double #08e926 !important; */
-    outline: 8px solid #08e926 !important;
+    outline: 5px solid #08e926 !important;
 }
 
 /* The animation code */

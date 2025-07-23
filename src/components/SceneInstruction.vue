@@ -1,11 +1,16 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { instrukcjaTekst } from '../lib/instrukcja';
-defineEmits(['koniec-instrukcja'])
+defineEmits(['koniec-instrukcja','koniec-instrukcja-focus'])
+
+const props = defineProps({
+ ifButtonOnFocus: Boolean
+});
 
 onMounted(() => {
   const elementToFocus = document.querySelector(".dalej")
-  if (elementToFocus) {
+  //dodanie warunku propsu
+  if (elementToFocus&&props.ifButtonOnFocus===true) {
     elementToFocus.focus();
   }
 
@@ -26,7 +31,7 @@ onMounted(() => {
       wykrzykniknikiem. Powodzenia!
     </p>
   </div>
-  <button class="dalej anim1" @click="$emit('koniec-instrukcja')" role="button">dalej</button>
+  <button class="dalej anim1" @click="$emit('koniec-instrukcja')" @keydown.enter="$emit('koniec-instrukcja-focus')" role="button">dalej</button>
 
 </template>
 
@@ -76,7 +81,7 @@ onMounted(() => {
 .dalej:focus {
   /* border: 4px solid #08e926; */
   /* outline: thick double #08e926; */
-  outline: 8px solid #08e926;
+  outline: 5px solid #08e926;
 }
 
 /* The animation code */

@@ -1,15 +1,19 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 
-defineEmits(['koniec-pulapka']);
+defineEmits(['koniec-pulapka','koniec-pulapka-focus']);
 
 defineOptions({
   inheritAttrs: false
 })
 
+const props = defineProps({
+    ifButtonOnFocusTrap: Boolean
+})
+
 onMounted(() => {
   const elementToFocus = document.querySelector(".przycisk_pulapka1")
-  if (elementToFocus) {
+  if (elementToFocus&&props.ifButtonOnFocusTrap===true) {
     elementToFocus.focus();
   }
 
@@ -29,7 +33,7 @@ function koniecPulapki() {
     <p class="naglowek">ZASADZKA!</p>
     <p class="napis">Cofasz się o dwa pola.</p>
   </div>
-  <button class="przycisk_pulapka1 anim1" @click="$emit('koniec-pulapka'); koniecPulapki()" role="button">dalej</button>
+  <button class="przycisk_pulapka1 anim1" @click="$emit('koniec-pulapka'); koniecPulapki()" @keydown.enter="$emit('koniec-pulapka-focus')" role="button">dalej</button>
 </template>
 <style scoped>
 .pulapka1 {
@@ -98,7 +102,7 @@ function koniecPulapki() {
 
 .przycisk_pulapka1:focus {
   /* outline: thick double #08e926; */
-  outline: 8px solid #08e926;
+  outline: 5px solid #08e926;
 }
 
 /* The animation code */

@@ -1,10 +1,14 @@
 <script setup>
 import { ref, onMounted } from 'vue';
-defineEmits(['wybor-levelu1', 'wybor-levelu2']);
+defineEmits(['wybor-levelu1','wybor-levelu1-focus' ,'wybor-levelu2','wybor-levelu2-focus']);
+
+const props = defineProps({
+ ifButtonOnFocusLevelTwo: Boolean
+});
 
 onMounted(() => {
     const elementToFocus = document.querySelector(".level-one-button")
-    if (elementToFocus) {
+    if (elementToFocus&&props.ifButtonOnFocusLevelTwo===true) {
         elementToFocus.focus();
     }
 
@@ -13,9 +17,9 @@ onMounted(() => {
 
 <template>
     <div class="tlo-level2" role="img" alt="tło" aria-label="plansza wyboru poziomu"></div>
-        <button class="level-one-button" @click="$emit('wybor-levelu1')" role="button" 
+        <button class="level-one-button" @click="$emit('wybor-levelu1')" @keydown.enter="$emit('wybor-levelu1-focus')" role="button" 
             aria-label="wybierz poziom jeden">poziom 1</button>
-        <button class="level-two-button" @click="$emit('wybor-levelu2')" role="button" 
+        <button class="level-two-button" @click="$emit('wybor-levelu2')" @keydown.enter="$emit('wybor-levelu2-focus')"  role="button" 
             aria-label="wybierz poziom dwa">poziom 2</button>
 </template>
 
@@ -53,7 +57,7 @@ onMounted(() => {
 
 .level-one-button:focus {
     /* outline: thick double #08e926; */
-    outline: 8px solid #08e926;
+    outline: 5px solid #08e926;
 }
 
 .level-two-button {
@@ -79,6 +83,6 @@ onMounted(() => {
 
 .level-two-button:focus {
     /* outline: thick double #08e926; */
-    outline: 8px solid #08e926;
+    outline: 5px solid #08e926;
 }
 </style>

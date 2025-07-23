@@ -6,15 +6,24 @@ import { Traps } from "../lib/traps";
 import SceneQuizz1 from './SceneQuizz1.vue';
 import SceneTrap from './SceneTrap.vue';
 
-const emit = defineEmits(['koniec-etap1', 'przegrana'])
+const emit = defineEmits(['koniec-etap1', 'przegrana','koniec-etap1-focus','przegrana-focus'])
+
+const props = defineProps({
+    ifButtonOnFocusMain1: Boolean
+})
 
 defineOptions({
     inheritAttrs: false
 })
+//obsługa focusa
+const ifQuizzFocusOn = ref(false)
+const ifTrapFocusOn = ref(false)
+const ifRzucKostkaButtonOnFocus = ref(false)
+const ifFocusEmitGlobal = ref(false)
 
 onMounted(() => {
     const elementToFocus = document.querySelector(".rzut1")
-    if (elementToFocus) {
+    if (elementToFocus && props.ifButtonOnFocusMain1 === true) {
         elementToFocus.focus();
     }
 })
@@ -26,7 +35,7 @@ const postac1 = ref("postać")
 const krok_gracz1_na_planszy = ref(0);
 
 //roboczo do edycji pytań
-///const krok_gracz1_na_planszy = ref(12);
+//const krok_gracz1_na_planszy = ref(12);
 
 //zdefinowanie pozycji (mapy wszystkich pozycji) gracza nr 1
 const pozycje_pionka_gracza1 = new PawnMaps().pionek_gracza1;
@@ -161,7 +170,7 @@ function kostka_click() {
             i++; //  increment the counter
 
             // if (i <= wynik_rzutu && ruch_lokalny <= 15) {
-                if (i <= wynik_rzutu && ruch_lokalny <= 15) {
+            if (i <= wynik_rzutu && ruch_lokalny <= 15) {
                 myLoopPionek(arg_A, arg_B, arg_C); //  ..  again which will trigger another                         
             } else {
                 dodanie_krokow();
@@ -228,7 +237,14 @@ function kostka_click() {
 
     const wywolanie_sceny_koncowej = () => {
         console.log("wywołanie planszy wyboru etapu nr 2");
-        emit('koniec-etap1')
+        if(ifFocusEmitGlobal.value===false){
+            emit('koniec-etap1')
+        }
+        
+        if(ifFocusEmitGlobal.value===true){
+           emit('koniec-etap1-focus')  
+        }
+        
     };
 
 
@@ -242,12 +258,50 @@ const koniecQuizu = () => {
             resolve(document.querySelector(".rzut1"))
         }, 300);
     })
+    // if (ifRzucKostkaButtonOnFocus === true) {
+    //     buttonRzutVis.then((res) => {
+    //         res.focus()
+    //     })
+    // }
+}
 
-    buttonRzutVis.then((res) => { res.focus() })
+const koniecQuizuFocusOn=()=>{
+    if_rzuc_kostka.value = true
+
+    const buttonRzutVis = new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve(document.querySelector(".rzut1"))
+        }, 300);
+    })
+  
+        buttonRzutVis.then((res) => {
+            res.focus()
+        })
+    
 }
 
 const koniecPulapki = () => {
     console.log("emmiter - krok do tyłu");
+    console.log(krok_gracz1_na_planszy.value);
+    krok_gracz1_na_planszy.value = krok_gracz1_na_planszy.value - 2;
+    ruch_lokalny = ruch_lokalny - 2;
+    console.log(krok_gracz1_na_planszy.value);
+    pionek_left.value = pozycje_pionka_gracza1[krok_gracz1_na_planszy.value - 1][0]
+    pionek_top.value = pozycje_pionka_gracza1[krok_gracz1_na_planszy.value - 1][1]
+    if_rzuc_kostka.value = true;
+
+    // const buttonRzutVis = new Promise((resolve, reject) => {
+    //     setTimeout(() => {
+    //         resolve(document.querySelector(".rzut1"))
+    //     }, 300);
+    // })
+
+    // buttonRzutVis.then((res) => { res.focus() })
+
+}
+
+const koniecPulapkiFocusOn=()=>{
+     console.log("emmiter - krok do tyłu");
     console.log(krok_gracz1_na_planszy.value);
     krok_gracz1_na_planszy.value = krok_gracz1_na_planszy.value - 2;
     ruch_lokalny = ruch_lokalny - 2;
@@ -263,7 +317,6 @@ const koniecPulapki = () => {
     })
 
     buttonRzutVis.then((res) => { res.focus() })
-
 }
 
 const odejmijSzanse = () => {
@@ -282,32 +335,53 @@ const odejmijSzanse = () => {
         if_szansa1.value = false;
         console.log("przegrałeś!!!");
         if_widok_quizz1.value = false;
-        emit('przegrana');
+        if(ifFocusEmitGlobal.value===false){
+            console.log('przegrana z myszki')
+             emit('przegrana');
+        }
+        if(ifFocusEmitGlobal.value===true){
+             console.log("przegrana z focusa")
+             emit('przegrana-focus');
+        }
+        
     }
 }
 
+function clickWithFocus() {
+    ifQuizzFocusOn.value = true
+    ifTrapFocusOn.value = true
+    ifFocusEmitGlobal.value=true
+    kostka_click()
+}
+
+function clickWithMouse(){
+    ifFocusEmitGlobal.value=false
+    kostka_click()
+}
 </script>
 <template>
     <div class="tlo2" role="img" alt="tło" aria-label="gra planszowa - poziom1"></div>
-        <div class="pionek1" :style="{ left: pionek_left + 'px', top: pionek_top + 'px' }" role="img" alt="ikona"
-            aria-label="Pionek"></div>
-        <h3 class="szanse-napis">szanse:</h3>
-        <div class="szansa1 szansa_ksztalt1" v-if="if_szansa1" role="img" alt="ikona" aria-label="Szansa 1"></div>
-        <div class="szansa2 szansa_ksztalt1" v-if="if_szansa2" role="img" alt="ikona" aria-label="Szansa 2"></div>
-        <div class="szansa3 szansa_ksztalt1" v-if="if_szansa3" role="img" alt="ikona" aria-label="Szansa 3"></div>
-        <button class="rzut1 anim1" v-if="if_rzuc_kostka" @click="kostka_click()" role="button"  autofocus>Rzut kostką</button>
-        <div class="kostka1" :class="{
-            'kostka1image1': isSet1,
-            'kostka1image2': isSet2,
-            'kostka1image3': isSet3,
-            'kostka1image4': isSet4,
-            'kostka1image5': isSet5,
-            'kostka1image6': isSet6
-        }" v-if="if_widok_kostki" role="img" alt="ikona widoku kostki" :aria-label=wyrzuconaWartoscKostki></div>
-        <SceneTrap v-if="if_widok_pulapki" @koniec-pulapka="if_widok_pulapki = false, koniecPulapki()" />
-        <SceneQuizz1 v-if="if_widok_quizz1" @koniec-quizz="if_widok_quizz1 = false, koniecQuizu()"
-            @odejmij-szanse="odejmijSzanse" msg="Hej" :miejsceNaPlanszy="krok_gracz1_na_planszy" />
-    
+    <div class="pionek1" :style="{ left: pionek_left + 'px', top: pionek_top + 'px' }" role="img" alt="ikona"
+        aria-label="Pionek"></div>
+    <h3 class="szanse-napis">szanse:</h3>
+    <div class="szansa1 szansa_ksztalt1" v-if="if_szansa1" role="img" alt="ikona" aria-label="Szansa 1"></div>
+    <div class="szansa2 szansa_ksztalt1" v-if="if_szansa2" role="img" alt="ikona" aria-label="Szansa 2"></div>
+    <div class="szansa3 szansa_ksztalt1" v-if="if_szansa3" role="img" alt="ikona" aria-label="Szansa 3"></div>
+    <button class="rzut1 anim1" v-if="if_rzuc_kostka" @click="clickWithMouse" @keydown.enter="clickWithFocus"
+        role="button">Rzut kostką</button>
+    <div class="kostka1" :class="{
+        'kostka1image1': isSet1,
+        'kostka1image2': isSet2,
+        'kostka1image3': isSet3,
+        'kostka1image4': isSet4,
+        'kostka1image5': isSet5,
+        'kostka1image6': isSet6
+    }" v-if="if_widok_kostki" role="img" alt="ikona widoku kostki" :aria-label=wyrzuconaWartoscKostki></div>
+    <SceneTrap v-if="if_widok_pulapki" @koniec-pulapka="if_widok_pulapki = false, koniecPulapki()" @koniec-pulapka-focus="if_widok_pulapki = false, koniecPulapkiFocusOn()" :ifButtonOnFocusTrap="ifTrapFocusOn" />
+    <SceneQuizz1 v-if="if_widok_quizz1" @koniec-quizz="if_widok_quizz1 = false, koniecQuizu()"
+        @koniec-quizz-focus="if_widok_quizz1 = false, ifRzucKostkaButtonOnFocus = true, koniecQuizuFocusOn()" @odejmij-szanse="odejmijSzanse" msg="Hej"
+        :miejsceNaPlanszy="krok_gracz1_na_planszy" :ifButtonOnFocusQuizz1="ifQuizzFocusOn" />
+
 </template>
 <style scoped>
 .tlo2 {
@@ -329,7 +403,7 @@ const odejmijSzanse = () => {
     position: absolute;
 }
 
-.szanse-napis{
+.szanse-napis {
     color: rgb(29, 56, 80);
     font-size: 45px;
     font-style: bold;
@@ -402,7 +476,7 @@ const odejmijSzanse = () => {
 
 .rzut1:focus {
     /* outline: thick double #08e926; */
-    outline: 8px solid #9a009e;
+    outline: 5px solid #9a009e;
 }
 
 .szansa_ksztalt1 {

@@ -1,14 +1,18 @@
 <script setup>
 import { onMounted } from 'vue';
 
+const props = defineProps({
+ ifButtonOnFocus: Boolean
+});
+
 onMounted(() => {
     const elementToFocus = document.querySelector(".gram-jeszcze-1-level-one")
-    if (elementToFocus) {
+    if (elementToFocus&&props.ifButtonOnFocus===true) {
         elementToFocus.focus();
     }
 })
 
-defineEmits(['gram-dalej', 'koniec-gry']);
+defineEmits(['gram-dalej','gram-dalej-focus', 'koniec-gry', 'koniec-gry-focus']);
 
 const fanfary = new Audio(new URL('../assets/fanfary.mp3', import.meta.url).href);
 fanfary.play();
@@ -20,8 +24,8 @@ fanfary.play();
         <p class="napis">Udało ci się ukończyć <b>Poziom 1</b></p>
         <p class="napis-2">Chcesz grać dalej?</p>
     </div>
-    <button class="gram-jeszcze-1-level-one anim1" @click="$emit('gram-dalej')" role="button">gram dalej</button>
-    <button class="zakoncz-gre anim1" @click="$emit('koniec-gry')" role="button">zakończ grę</button>
+    <button class="gram-jeszcze-1-level-one anim1" @click="$emit('gram-dalej')" @keydown.enter="$emit('gram-dalej-focus')" role="button">gram dalej</button>
+    <button class="zakoncz-gre anim1" @click="$emit('koniec-gry')" @keydown.enter="$emit('koniec-gry-focus')" role="button">zakończ grę</button>
 
 </template>
 
@@ -106,7 +110,7 @@ fanfary.play();
 
 .gram-jeszcze-1-level-one:focus {
     /* outline: thick double #08e926; */
-    outline: 8px solid #08e926;
+    outline: 5px solid #08e926;
 }
 
 .zakoncz-gre {
@@ -133,7 +137,7 @@ fanfary.play();
 
 .zakoncz-gre:focus {
     /* outline: thick double #08e926; */
-    outline: 8px solid #08e926;
+    outline: 5px solid #08e926;
 }
 
 /* The animation code */

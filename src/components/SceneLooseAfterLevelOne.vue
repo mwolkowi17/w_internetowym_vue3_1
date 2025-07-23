@@ -1,10 +1,14 @@
 <script setup>
 import { ref, onMounted } from 'vue';
-defineEmits(['jeszcze-raz', 'koniec-gry']);
+defineEmits(['jeszcze-raz','jeszcze-raz-focus' ,'koniec-gry']);
+
+const props = defineProps({
+ ifButtonOnFocus: Boolean
+});
 
 onMounted(() => {
     const elementToFocus = document.querySelector(".gram-jeszcze-1")
-    if (elementToFocus) {
+    if (elementToFocus&&props.ifButtonOnFocus===true) {
         elementToFocus.focus();
     }
 
@@ -19,7 +23,7 @@ przegrana_sound.play();
         <p class="naglowek">Niestety przegrałeś.</p>
         <p class="napis">Chcesz spróbować jeszcze raz?</p>
     </div>
-    <button class="gram-jeszcze-1 anim1" @click="$emit('jeszcze-raz')" role="button">zagraj jeszcze raz</button>
+    <button class="gram-jeszcze-1 anim1" @click="$emit('jeszcze-raz')" @keydown.enter="$emit('jeszcze-raz-focus')" role="button">zagraj jeszcze raz</button>
     <button class="zakoncz-gre anim1" @click="$emit('koniec-gry')" role="button">zakończ grę</button>
 </template>
 
@@ -89,7 +93,7 @@ przegrana_sound.play();
 
 .gram-jeszcze-1:focus {
     /* outline: thick double #08e926; */
-    outline: 8px solid #08e926;
+    outline: 5px solid #08e926;
 }
 
 .zakoncz-gre {
@@ -116,7 +120,7 @@ przegrana_sound.play();
 
 .zakoncz-gre:focus {
     /* outline: thick double #08e926; */
-    outline: 8px solid #08e926;
+    outline: 5px solid #08e926;
 }
 
 /* The animation code */

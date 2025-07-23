@@ -10,14 +10,24 @@ import SceneQuizz2 from './SceneQuizz2.vue';
 defineOptions({
     inheritAttrs: false
 })
+const emit = defineEmits(['koniec-etap2', 'przegrana2', 'koniec-etap2-focus', 'przegrana2-focus'])
+
+const props = defineProps({
+    ifButtonOnFocusMain2: Boolean
+})
 
 
-const emit = defineEmits(['koniec-etap2', 'przegrana2'])
+
+//obsługa focusa
+const ifQuizzFocusOn2 = ref(false)
+const ifTrapFocusOn = ref(false)
+const ifRzucKostkaButtonOnFocus = ref(false)
+const ifFocusEmitGlobal = ref(false)
 
 onMounted(() => {
- const elementToFocus = document.querySelector(".rzut2")
- if (elementToFocus) {
-      elementToFocus.focus();
+    const elementToFocus = document.querySelector(".rzut2")
+    if (elementToFocus && props.ifButtonOnFocusMain2 === true) {
+        elementToFocus.focus();
     }
 
 })
@@ -220,19 +230,36 @@ function kostka_click() {
 
     const wywolanie_sceny_koncowej = () => {
         console.log("wywołanie sceny końcowej");
-        emit('koniec-etap2')
+        if (ifFocusEmitGlobal.value === false) {
+            emit('koniec-etap2')
+        }
+        if (ifFocusEmitGlobal.value === true) {
+            emit('koniec-etap2-focus')
+        }
     };
 
 
 }
 
-const koniecQuizu = ()=> {
-if_rzuc_kostka.value = true
+const koniecQuizu = () => {
+    if_rzuc_kostka.value = true
 
-const buttonRzutVis = new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve(document.querySelector(".rzut2"))
-      }, 300);
+    const buttonRzutVis = new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve(document.querySelector(".rzut2"))
+        }, 300);
+    })
+
+    //buttonRzutVis.then((res) => { res.focus() })
+}
+
+const koniecQuizuFocusOn = () => {
+    if_rzuc_kostka.value = true
+
+    const buttonRzutVis = new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve(document.querySelector(".rzut2"))
+        }, 300);
     })
 
     buttonRzutVis.then((res) => { res.focus() })
@@ -248,10 +275,29 @@ const koniecPulapki = () => {
     pionek_top.value = pozycje_pionka_gracza1[krok_gracz1_na_planszy.value - 1][1]
     if_rzuc_kostka.value = true;
 
-      const buttonRzutVis = new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve(document.querySelector(".rzut2"))
-      }, 300);
+    // const buttonRzutVis = new Promise((resolve, reject) => {
+    //     setTimeout(() => {
+    //         resolve(document.querySelector(".rzut2"))
+    //     }, 300);
+    // })
+
+    // buttonRzutVis.then((res) => { res.focus() })
+}
+
+const koniecPulapkiFocusOn = () => {
+    console.log("emmiter - krok do tyłu");
+    console.log(krok_gracz1_na_planszy.value);
+    krok_gracz1_na_planszy.value = krok_gracz1_na_planszy.value - 2;
+    ruch_lokalny = ruch_lokalny - 2;
+    console.log(krok_gracz1_na_planszy.value);
+    pionek_left.value = pozycje_pionka_gracza1[krok_gracz1_na_planszy.value - 1][0]
+    pionek_top.value = pozycje_pionka_gracza1[krok_gracz1_na_planszy.value - 1][1]
+    if_rzuc_kostka.value = true;
+
+    const buttonRzutVis = new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve(document.querySelector(".rzut2"))
+        }, 300);
     })
 
     buttonRzutVis.then((res) => { res.focus() })
@@ -277,8 +323,25 @@ const odejmijSzanse = () => {
         if_szansa1.value = false;
         console.log("przegrałeś!!!");
         if_widok_quizz2.value = false;
-        emit('przegrana2');
+        if (ifFocusEmitGlobal.value === false) {
+            emit('przegrana2');
+        }
+        if (ifFocusEmitGlobal.value === true) {
+            emit('przegrana2-focus')
+        }
     }
+}
+
+function clickWithFocus() {
+    ifQuizzFocusOn2.value = true
+    ifTrapFocusOn.value = true
+    ifFocusEmitGlobal.value = true
+    kostka_click()
+}
+
+function clickWithMouse() {
+    ifFocusEmitGlobal.value = false
+    kostka_click()
 }
 </script>
 <template>
@@ -286,12 +349,16 @@ const odejmijSzanse = () => {
     <div class="pionek1" :style="{ left: pionek_left + 'px', top: pionek_top + 'px' }" role="img" alt="pionek"
         aria-label="Pionek"></div>
     <h3 class="szanse-napis">szanse:</h3>
-    <div class="szansa1 szansa_ksztalt1" v-if="if_szansa1" role="img" alt="gwiazdka ikona szansy" aria-label="Szansa 1"></div>
-    <div class="szansa2 szansa_ksztalt1" v-if="if_szansa2" role="img" alt="gwiazdka ikona szansy" aria-label="Szansa 2"></div>
-    <div class="szansa3 szansa_ksztalt1" v-if="if_szansa3" role="img" alt="gwiazdka ikona szansy" aria-label="Szansa 3"></div>
-    <div class="szansa4 szansa_ksztalt1" v-if="if_szansa4" role="img" alt="gwiazdka ikona szansy" aria-label="Szansa 4"></div>
-    <button class="rzut2 anim1" v-if="if_rzuc_kostka" @click="kostka_click()" role="button"
-        >Rzut kostką</button>
+    <div class="szansa1 szansa_ksztalt1" v-if="if_szansa1" role="img" alt="gwiazdka ikona szansy" aria-label="Szansa 1">
+    </div>
+    <div class="szansa2 szansa_ksztalt1" v-if="if_szansa2" role="img" alt="gwiazdka ikona szansy" aria-label="Szansa 2">
+    </div>
+    <div class="szansa3 szansa_ksztalt1" v-if="if_szansa3" role="img" alt="gwiazdka ikona szansy" aria-label="Szansa 3">
+    </div>
+    <div class="szansa4 szansa_ksztalt1" v-if="if_szansa4" role="img" alt="gwiazdka ikona szansy" aria-label="Szansa 4">
+    </div>
+    <button class="rzut2 anim1" v-if="if_rzuc_kostka" @click="clickWithMouse" @keydown.enter="clickWithFocus"
+        role="button">Rzut kostką</button>
     <div class="kostka1" :class="{
         'kostka1image1': isSet1,
         'kostka1image2': isSet2,
@@ -300,9 +367,12 @@ const odejmijSzanse = () => {
         'kostka1image5': isSet5,
         'kostka1image6': isSet6
     }" v-if="if_widok_kostki" role="img" alt="kostka do gry" :aria-label=wyrzuconaWartoscKostki></div>
-    <SceneTrap v-if="if_widok_pulapki" @koniec-pulapka="if_widok_pulapki = false, koniecPulapki()" rel="preload" />
+    <SceneTrap v-if="if_widok_pulapki" @koniec-pulapka="if_widok_pulapki = false, koniecPulapki()"
+        @koniec-pulapka-focus="if_widok_pulapki = false; koniecPulapkiFocusOn()" rel="preload"
+        :ifButtonOnFocusTrap="ifTrapFocusOn" />
     <SceneQuizz2 v-if="if_widok_quizz2" @koniec-quizz="if_widok_quizz2 = false, koniecQuizu()"
-        @odejmij-szanse="odejmijSzanse" msg="Hej" :miejsceNaPlanszy="krok_gracz1_na_planszy" rel="preload" />
+        @koniec-quizz-focus="if_widok_quizz2 = false, koniecQuizuFocusOn()" @odejmij-szanse="odejmijSzanse" msg="Hej"
+        :miejsceNaPlanszy="krok_gracz1_na_planszy" :ifButtonOnFocusQuizz2="ifQuizzFocusOn2" rel="preload" />
 </template>
 
 <style scoped>
@@ -326,7 +396,7 @@ const odejmijSzanse = () => {
 
 }
 
-.szanse-napis{
+.szanse-napis {
     color: rgb(29, 56, 80);
     font-size: 45px;
     font-style: bold;
@@ -401,7 +471,7 @@ const odejmijSzanse = () => {
 
 .rzut2:focus {
     /* outline: thick double #08e926; */
-    outline: 8px solid #9a009e;
+    outline: 5px solid #9a009e;
 }
 
 .szansa_ksztalt1 {
@@ -437,16 +507,22 @@ const odejmijSzanse = () => {
 
 /* The animation code */
 @keyframes example {
-  /* from {background-color: red;}
+
+    /* from {background-color: red;}
   to {background-color: yellow;} */
-  from {opacity: 0;}
-  to {opacity: 100;}
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 100;
+    }
 }
 
 /*anim1* The element to apply the animation to */
 .anim1 {
-  
-  animation-name: example;
-  animation-duration: 1s;
+
+    animation-name: example;
+    animation-duration: 1s;
 }
 </style>
