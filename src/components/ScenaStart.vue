@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 
-const emit = defineEmits(['koniec-planszy','instrukcja-focus']) //dodanie emitera eventu z klawiatury
+const emit = defineEmits(['koniec-planszy', 'instrukcja-focus']) //dodanie emitera eventu z klawiatury
 
 const props = defineProps({
   ifButtonOnFocus: Boolean
@@ -27,10 +27,11 @@ function openFullscreen() {
 <template>
   <div ref="stageParent" class="tlo" role="img" alt="plansza startu gry" aria-label="W internetowym labiryncie">
   </div>
-  <button class="start" @click="$emit('koniec-planszy')" @keydown.enter="$emit('instrukcja-focus')" role="button">START</button>
+  <button class="start my-button" @click="$emit('koniec-planszy')" @keydown.enter="$emit('instrukcja-focus')"
+    role="button">START</button>
 </template>
 
-<style>
+<style scoped>
 .tytul {
   color: greenyellow;
 }
@@ -60,11 +61,48 @@ function openFullscreen() {
   width: 432px;
   height: 168px;
   border: 4px solid rgb(0, 187, 255);
+  /*transition: .2s ease-out;*/
+  overflow: visible;
+
 }
 
-.start:hover {
-  cursor: pointer;
+.my-button{
+  transition: .2s ease-out;
 }
+
+.my-button::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  inset: 0;
+  height: 130%;
+  width: 110%;
+  box-sizing: border-box;
+
+}
+
+.my-button:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+
+/* .start:hover::after{
+   content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  margin-left:10px;
+  margin-top:-10px;
+  height: 130%;
+  width: 110%;
+  border: 3px solid blue;
+  box-sizing: border-box;
+  padding:10px;
+} */
+
+
 
 .start:focus {
   outline: 5px solid #08e926;

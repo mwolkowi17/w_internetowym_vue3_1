@@ -18,7 +18,7 @@ onMounted(() => {
 <template>
     <div class="tlo-level1" role="img" alt="tło" aria-label="Wybór poziomu">
     </div>
-    <button class="level-one-button" @click="$emit('wybor-levelu1')" @keydown.enter="$emit('wybor-levelu1-focus')" role="button" 
+    <button class="level-one-button my-button" @click="$emit('wybor-levelu1')" @keydown.enter="$emit('wybor-levelu1-focus')" role="button" 
          >poziom 1</button>
     <button class="level-two-button" role="img" aria-label="poziom 2 niedostępny" aria-disabled ="true" disabled>poziom 2</button>
 
@@ -33,6 +33,27 @@ onMounted(() => {
     top: 0px;
     left: 0px;
     position: absolute;
+}
+
+.my-button{
+  transition: .2s ease-out;
+}
+
+.my-button::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  inset: 0;
+  height: 130%;
+  width: 110%;
+  box-sizing: border-box;
+
+}
+
+.my-button:hover {
+  cursor: pointer;
+  transform: scale(1.1);
 }
 
 .level-one-button {

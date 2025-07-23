@@ -33,7 +33,7 @@ function koniecPulapki() {
     <p class="naglowek">ZASADZKA!</p>
     <p class="napis">Cofasz się o dwa pola.</p>
   </div>
-  <button class="przycisk_pulapka1 anim1" @click="$emit('koniec-pulapka'); koniecPulapki()" @keydown.enter="$emit('koniec-pulapka-focus')" role="button">dalej</button>
+  <button class="przycisk_pulapka1 my-button anim1" @click="$emit('koniec-pulapka'); koniecPulapki()" @keydown.enter="$emit('koniec-pulapka-focus')" role="button">dalej</button>
 </template>
 <style scoped>
 .pulapka1 {
@@ -75,6 +75,27 @@ function koniecPulapki() {
   width: 333px;
   position: absolute;
   z-index: 2;
+}
+
+.my-button{
+  transition: .2s ease-out;
+}
+
+.my-button::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  inset: 0;
+  height: 130%;
+  width: 110%;
+  box-sizing: border-box;
+
+}
+
+.my-button:hover {
+  cursor: pointer;
+  transform: scale(1.1);
 }
 
 .przycisk_pulapka1 {

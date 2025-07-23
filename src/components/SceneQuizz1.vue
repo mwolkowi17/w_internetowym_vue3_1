@@ -182,14 +182,14 @@ function sprawdzOdpowiedz() {
     </li>
   </ul>
 
-  <button class="button-dalej" v-if="if_button_dalej" @click="sprawdzOdpowiedz()"
+  <button class="button-dalej my-button" v-if="if_button_dalej" @click="sprawdzOdpowiedz()"
     @keydown.enter="ifButtonKoniecQuizzuOnFocus = true; sprawdzOdpowiedz()" role="button" alt="przycisk sprawdź">sprawdź
     odpowiedź</button>
   <div class="plansza-dobrze" v-if="if_odpowiedz_dobrze">
     <p class="naglowek-after-quizz naglowek-dobrze">BRAWO!</p>
     <p class="napis-odpowiedz napis-dobrze">Prawidłowa odpowiedź.</p>
   </div>
-  <button class="button-dalej-dobrze anim1" v-if="if_button_dalej_dobrze" @click="if_odpowiedz_dobrze = false,
+  <button class="button-dalej-dobrze my-button anim1" v-if="if_button_dalej_dobrze" @click="if_odpowiedz_dobrze = false,
     if_button_dalej_dobrze = false,
     $emit('koniec-quizz')" @keydown.enter="
       if_odpowiedz_dobrze = false,
@@ -199,7 +199,7 @@ function sprawdzOdpowiedz() {
     <p class="naglowek-after-quizz naglowek-zle">Źle!</p>
     <p class="napis-odpowiedz napis-zle">Błędna odpowiedź.</p>
   </div>
-  <button class="button-dalej-dobrze anim1" v-if="if_button_dalej_zle" @click="if_odpowiedz_zle = false,
+  <button class="button-dalej-dobrze my-button anim1" v-if="if_button_dalej_zle" @click="if_odpowiedz_zle = false,
     if_button_dalej_zle = false,
     $emit('koniec-quizz')" @keydown.enter="
       if_odpowiedz_zle = false,
@@ -362,6 +362,26 @@ li {
 
 }
 
+.my-button{
+  transition: .2s ease-out;
+}
+
+.my-button::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  inset: 0;
+  height: 130%;
+  width: 110%;
+  box-sizing: border-box;
+
+}
+
+.my-button:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
 
 .button-dalej {
   background-image: url("../assets/sprawdz_odpwowiedz_button1.png");

@@ -24,8 +24,8 @@ fanfary.play();
         <p class="napis">Udało ci się ukończyć <b>Poziom 1</b></p>
         <p class="napis-2">Chcesz grać dalej?</p>
     </div>
-    <button class="gram-jeszcze-1-level-one anim1" @click="$emit('gram-dalej')" @keydown.enter="$emit('gram-dalej-focus')" role="button">gram dalej</button>
-    <button class="zakoncz-gre anim1" @click="$emit('koniec-gry')" @keydown.enter="$emit('koniec-gry-focus')" role="button">zakończ grę</button>
+    <button class="gram-jeszcze-1-level-one my-button anim1" @click="$emit('gram-dalej')" @keydown.enter="$emit('gram-dalej-focus')" role="button">gram dalej</button>
+    <button class="zakoncz-gre my-button anim1" @click="$emit('koniec-gry')" @keydown.enter="$emit('koniec-gry-focus')" role="button">zakończ grę</button>
 
 </template>
 
@@ -84,6 +84,27 @@ fanfary.play();
     width: 333px;
     position: absolute;
     z-index: 2;
+}
+
+.my-button{
+  transition: .2s ease-out;
+}
+
+.my-button::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  inset: 0;
+  height: 130%;
+  width: 110%;
+  box-sizing: border-box;
+
+}
+
+.my-button:hover {
+  cursor: pointer;
+  transform: scale(1.1);
 }
 
 .gram-jeszcze-1-level-one {

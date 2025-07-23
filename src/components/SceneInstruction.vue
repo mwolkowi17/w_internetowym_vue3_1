@@ -35,7 +35,7 @@ onMounted(() => {
 
 </template>
 
-<style>
+<style scoped>
 .tlo1 {
   background-image: url("../assets/plansza_zasady_gry.png");
   background-size: 1920px 1080px;
@@ -57,6 +57,28 @@ onMounted(() => {
   left: 310px;
 }
 
+.my-button{
+  transition: .2s ease-out;
+  /* overflow: visible; */
+}
+
+/* .my-button::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  inset: 0;
+  height: 130%;
+  width: 110%;
+  box-sizing: border-box;
+
+} */
+
+.my-button:hover {
+  cursor: pointer;
+  transform: scale(1.03);
+}
+
 .dalej {
   /* background-image: url("../assets/przycisk_dalej_imie.png"); */
   color: rgb(29, 56, 80);
@@ -64,18 +86,25 @@ onMounted(() => {
   font-style: bold;
   font-weight: 700;
   font-family: "Proxima Nova", sans-serif;
-  background-size: 301px 117px;
-  background-position: -1px -1px;
   position: absolute;
   top: 800px;
   left: 850px;
   width: 301px;
   height: 117px;
   border: 4px solid rgb(0, 187, 255);
+  /* display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  overflow: hidden;           /* Prevent overflow *
+  transform-origin: center;  */
+  transition: .2s ease-in-out;
+
 }
 
 .dalej:hover {
   cursor: pointer;
+  transform: scale(1.1) ;
 }
 
 .dalej:focus {
