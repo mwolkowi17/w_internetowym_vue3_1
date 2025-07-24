@@ -78,9 +78,10 @@ const textToDisplay ="Znajdujesz się w Wirtualnej Dżungli - aby ją przejść,
   display: flex;
   align-items: center;
   padding: .5rem 1rem;
-  width: 1300px;
+  /* width: 1300px; */
+  width: 1400px;
   top: 210px;
-  left: 310px;
+  left: 260px;
   position: absolute;
 }
 
@@ -98,19 +99,19 @@ const textToDisplay ="Znajdujesz się w Wirtualnej Dżungli - aby ją przejść,
 .gwiazdka{
   position: absolute;
   top: 220px;
-  left: 1055px;
+  left: 746px;
 }
 
 .pytajnik{
   position: absolute;
-   top: 280px;
-  left: 730px;
+   top: 283px;
+  left: 355px;
 }
 
 .wykrzyknik{
   position: absolute;
-  top: 535px;
-  left: 15px;
+  top: 475px;
+  left: 715px;
 }
 
 .my-button {
