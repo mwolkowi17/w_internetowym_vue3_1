@@ -28,9 +28,9 @@ fanfary.play();
        <p class="napis">Udało ci się ukończyć grę.</p>
     </div>
     <button class="gram-jeszcze-1 my-button anim1" @click="$emit('jeszcze-raz')" @keydown.enter="$emit('jeszcze-raz-focus')" role="img" alt="przycisk"
-        aria-label="gram jeszcze raz">zagraj jeszcze raz</button>
+        aria-label="gram jeszcze raz">Zagraj jeszcze raz</button>
     <button class="zakoncz-gre my-button anim1" @click="$emit('koniec-gry')" @keydown.enter="$emit('koniec-gry-focus')" role="img" alt="przycisk"
-        aria-label="zakończ grę">zakończ grę</button>
+        aria-label="zakończ grę">Zakończ grę</button>
 </template>
 
 <style scoped>

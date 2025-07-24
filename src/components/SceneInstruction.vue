@@ -1,37 +1,54 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { instrukcjaTekst } from '../lib/instrukcja';
-defineEmits(['koniec-instrukcja','koniec-instrukcja-focus'])
+defineEmits(['koniec-instrukcja', 'koniec-instrukcja-focus'])
 
 const props = defineProps({
- ifButtonOnFocus: Boolean
+  ifButtonOnFocus: Boolean
 });
 
 onMounted(() => {
   const elementToFocus = document.querySelector(".dalej")
   //dodanie warunku propsu
-  if (elementToFocus&&props.ifButtonOnFocus===true) {
+  if (elementToFocus && props.ifButtonOnFocus === true) {
     elementToFocus.focus();
   }
 
 })
+
+const textToDisplay ="Znajdujesz się w Wirtualnej Dżungli - aby ją przejść, musisz odpowiedzieć "+
+       " prawidłowo na pytania dotyczące internetu. Gra składa się z dwóch"+
+        " poziomów. Rzucasz kostką i posuwasz się do przodu o tyle pól, ile oczek"+
+        " wyrzuciła kostka. Na początku gry otrzymujesz trzy szanse.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+
+        " Na polach oznaczonych znakiem zapytania &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; czeka Cię pytanie." + 
+        " Każda błędna odpowiedź - to strata 1 szansy. Utrata wszystkich szans" + 
+        " oznacza zakończenie gry. Dobra odpowiedź - to kolejny rzut kostką" + 
+        " Po drodze czekają Cię zasadzki kryjące się na polach oznaczonych" + 
+        " wykrzyknikiem &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;. Powodzenia!"
 </script>
 <template>
   <div class="tlo1" aria-label="Zasady gry">
-    <!-- tutaj sprawdzić jak czytnik wcag może omijać tel elementy <br> -->
-    <p class="instrukcja">
-      Znajdujesz się w Wirtualnej Dżungli - aby ją przejść, musisz odpowiedzieć <br>
-      prawidłowo na pytania dotyczące internetu. Gra składa się z dwóch<br>
-      poziomów. Rzucasz kostką i posuwasz się do przodu o tyle pól, ile oczek<br>
-      wyrzuciła kostka. Na początku gry otrzymujesz trzy szanse.<br>
-      Na polach oznaczonych znakiem zapytania czeka cię pytanie.<br>
-      Każda błędna odpowiedź - to strata 1 szansy. Utrata wszystkich szans<br>
-      oznacza zakończenie gry. Dobra odpowiedź - to kolejny rzut kostką<br>
-      Po drodze czekają Cię zasadzki kryjące się na polach oznaczonych<br>
-      wykrzykniknikiem. Powodzenia!
-    </p>
+    <h1 class="instrukcja-title">Zasady gry</h1>
+    <div class="kontener-instrukcja">
+      <!-- <p class="instrukcja">
+        Znajdujesz się w Wirtualnej Dżungli - aby ją przejść, musisz odpowiedzieć 
+        prawidłowo na pytania dotyczące internetu. Gra składa się z dwóch
+        poziomów. Rzucasz kostką i posuwasz się do przodu o tyle pól, ile oczek
+        wyrzuciła kostka. Na początku gry otrzymujesz trzy szanse.
+        Na polach oznaczonych znakiem zapytania czeka Cię pytanie.
+        Każda błędna odpowiedź - to strata 1 szansy. Utrata wszystkich szans
+        oznacza zakończenie gry. Dobra odpowiedź - to kolejny rzut kostką
+        Po drodze czekają Cię zasadzki kryjące się na polach oznaczonych
+        wykrzyknikiem. Powodzenia!
+      </p> -->
+         <p class="instrukcja" v-html="textToDisplay"></p>
+         <img class="gwiazdka" src="../assets/ikona1gwiazdka.png" />
+         <img class="pytajnik" src="../assets/ikona2question.png"/>
+         <img class="wykrzyknik" src="../assets/ikona3wykrzyknik.png" />
+    </div>
   </div>
-  <button class="dalej anim1" @click="$emit('koniec-instrukcja')" @keydown.enter="$emit('koniec-instrukcja-focus')" role="button">dalej</button>
+  <button class="dalej anim1" @click="$emit('koniec-instrukcja')" @keydown.enter="$emit('koniec-instrukcja-focus')"
+    role="button">Dalej</button>
 
 </template>
 
@@ -45,19 +62,58 @@ onMounted(() => {
   left: 0px;
   position: absolute;
 }
+.instrukcja-title{
+  position: absolute;
+    color: rgb(255, 255, 255);
+  font-size: 110px;
+  font-style: normal;
+  font-weight: 400;
+  font-family: "Proxima Nova", sans-serif;
+  line-height: 1.5;
+  top: 20px;
+  left: 705px;
+}
+
+.kontener-instrukcja {
+  display: flex;
+  align-items: center;
+  padding: .5rem 1rem;
+  width: 1300px;
+  top: 210px;
+  left: 310px;
+  position: absolute;
+}
 
 .instrukcja {
   color: rgb(255, 255, 255);
   font-size: 41px;
-  font-style: bold;
-  font-weight: 600;
+  font-style: normal;
+  font-weight: 300;
   font-family: "Proxima Nova", sans-serif;
-  position: absolute;
-  top: 260px;
-  left: 310px;
+  line-height: 1.5;
+  position: relative;
+
 }
 
-.my-button{
+.gwiazdka{
+  position: absolute;
+  top: 220px;
+  left: 1055px;
+}
+
+.pytajnik{
+  position: absolute;
+   top: 280px;
+  left: 730px;
+}
+
+.wykrzyknik{
+  position: absolute;
+  top: 535px;
+  left: 15px;
+}
+
+.my-button {
   transition: .2s ease-out;
   /* overflow: visible; */
 }
@@ -104,7 +160,7 @@ onMounted(() => {
 
 .dalej:hover {
   cursor: pointer;
-  transform: scale(1.1) ;
+  transform: scale(1.1);
 }
 
 .dalej:focus {

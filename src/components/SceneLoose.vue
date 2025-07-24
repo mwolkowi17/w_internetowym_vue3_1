@@ -23,8 +23,8 @@ przegrana_sound.play();
         <p class="naglowek">Niestety przegrałeś.</p>
         <p class="napis">Chcesz spróbować jeszcze raz?</p>
     </div>
-    <button class="gram-jeszcze-1 my-button anim1" @click="$emit('jeszcze-raz')" @keydown.enter="$emit('jeszcze-raz-focus')" role="button">zagraj jeszcze raz</button>
-    <button class="zakoncz-gre my-button anim1" @click="$emit('koniec-gry')" role="button">zakończ grę</button>
+    <button class="gram-jeszcze-1 my-button anim1" @click="$emit('jeszcze-raz')" @keydown.enter="$emit('jeszcze-raz-focus')" role="button">Zagraj jeszcze raz</button>
+    <button class="zakoncz-gre my-button anim1" @click="$emit('koniec-gry')" role="button">Zakończ grę</button>
 </template>
 
 <style scoped>

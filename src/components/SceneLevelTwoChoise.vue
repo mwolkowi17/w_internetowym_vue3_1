@@ -18,9 +18,9 @@ onMounted(() => {
 <template>
     <div class="tlo-level2" role="img" alt="tło" aria-label="plansza wyboru poziomu"></div>
         <button class="level-one-button my-button" @click="$emit('wybor-levelu1')" @keydown.enter="$emit('wybor-levelu1-focus')" role="button" 
-            aria-label="wybierz poziom jeden">poziom 1</button>
-        <button class="level-two-button my-button" @click="$emit('wybor-levelu2')" @keydown.enter="$emit('wybor-levelu2-focus')"  role="button" 
-            aria-label="wybierz poziom dwa">poziom 2</button>
+            aria-label="wybierz poziom jeden">Poziom 1</button>
+        <button class="level-two-button my-button" @click="$emit('wybor-levelu2')" @keydown.enter="$emit('wybor-levelu2-focus')" role="button" 
+            aria-label="wybierz poziom dwa">Poziom 2</button>
 </template>
 
 <style scoped>

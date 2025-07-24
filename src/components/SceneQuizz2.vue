@@ -238,7 +238,7 @@ function sprawdzOdpowiedz() {
     </ul>
 
     <button class="button-dalej my-button" v-if="if_button_dalej" @click="sprawdzOdpowiedz()"
-        @keydown.enter="ifButtonKoniecQuizzuOnFocus = true; sprawdzOdpowiedz" role="button">sprawdź
+        @keydown.enter="ifButtonKoniecQuizzuOnFocus = true; sprawdzOdpowiedz" role="button">Sprawdź
         odpowiedź</button>
     <div class="plansza-dobrze" v-if="if_odpowiedz_dobrze">
         <p class="naglowek-after-quizz naglowek-dobrze">BRAWO!</p>
@@ -247,7 +247,7 @@ function sprawdzOdpowiedz() {
     <button class="button-dalej-dobrze my-button anim1" v-if="if_button_dalej_dobrze" @click="if_odpowiedz_dobrze = false,
         if_button_dalej_dobrze = false,
         $emit('koniec-quizz')" @keydown.enter="if_odpowiedz_dobrze = false,
-        if_button_dalej_dobrze = false, $emit('koniec-quizz-focus')"  role="button">dalej</button>
+        if_button_dalej_dobrze = false, $emit('koniec-quizz-focus')"  role="button">Dalej</button>
     <div class="plansza-zle" v-if="if_odpowiedz_zle">
         <p class="naglowek-after-quizz naglowek-zle">Źle!</p>
         <p class="napis-odpowiedz napis-zle">Błędna odpowiedź.</p>
@@ -255,7 +255,7 @@ function sprawdzOdpowiedz() {
     <button class="button-dalej-dobrze my-button anim1" v-if="if_button_dalej_zle" @click="if_odpowiedz_zle = false,
         if_button_dalej_zle = false,
         $emit('koniec-quizz')" @keydown.enter="if_odpowiedz_dobrze = false,
-        if_button_dalej_dobrze = false, $emit('koniec-quizz-focus')" role="button">dalej</button>
+        if_button_dalej_dobrze = false, $emit('koniec-quizz-focus')" role="button">Dalej</button>
 
 </template>
 
@@ -493,9 +493,9 @@ li {
 .button-dalej {
     background-image: url("../assets/sprawdz_odpwowiedz_button1.png");
     color: rgb(255, 255, 255);
-    font-size: 40px;
+    font-size: 37px;
     font-style: bold;
-    font-weight: 700;
+    font-weight: 500;
     font-family: "Proxima Nova", sans-serif;
     background-size: 394px 87px;
     background-repeat: no-repeat;
